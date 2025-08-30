@@ -1,0 +1,91 @@
+<!-- Dark Mode Toggle Button -->
+<div class="fixed top-4 right-4 z-50 bg-white dark:bg-gray-800 shadow-lg border border-gray-200 dark:border-gray-700 rounded-lg p-1 flex space-x-1">
+  <button
+    id="light-mode-btn"
+    class="p-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+    aria-label="Light mode"
+    data-theme="light"
+  >
+    <i class="fa-solid fa-sun text-sm"></i>
+  </button>
+
+  <button
+    id="dark-mode-btn"
+    class="p-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+    aria-label="Dark mode"
+    data-theme="dark"
+  >
+    <i class="fa-solid fa-moon text-sm"></i>
+  </button>
+
+  <button
+    id="system-mode-btn"
+    class="p-2 rounded-md transition-colors hover:bg-gray-100 dark:hover:bg-gray-700"
+    aria-label="System default"
+    data-theme="system"
+  >
+    <i class="fa-solid fa-desktop text-sm"></i>
+  </button>
+</div>
+
+<script>
+  // Three-way theme toggle functionality
+  (function () {
+    const lightBtn = document.getElementById('light-mode-btn');
+    const darkBtn = document.getElementById('dark-mode-btn');
+    const systemBtn = document.getElementById('system-mode-btn');
+    const buttons = [lightBtn, darkBtn, systemBtn];
+
+    // Get current theme from localStorage or default to system
+    function getCurrentTheme() {
+      return localStorage.getItem('theme') || 'system';
+    }
+
+    // Apply theme to document
+    function applyTheme(theme) {
+      if (theme === 'system') {
+        localStorage.removeItem('theme');
+        document.documentElement.classList.toggle('dark', window.matchMedia('(prefers-color-scheme: dark)').matches);
+      } else {
+        localStorage.setItem('theme', theme);
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+      }
+    }
+
+    // Update button states
+    function updateButtons() {
+      const currentTheme = getCurrentTheme();
+
+      buttons.forEach(btn => {
+        const theme = btn.getAttribute('data-theme');
+        if (theme === currentTheme) {
+          btn.classList.add('bg-gray-200', 'dark:bg-gray-600');
+          btn.classList.remove('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+        } else {
+          btn.classList.remove('bg-gray-200', 'dark:bg-gray-600');
+          btn.classList.add('hover:bg-gray-100', 'dark:hover:bg-gray-700');
+        }
+      });
+    }
+
+    // Initialize
+    applyTheme(getCurrentTheme());
+    updateButtons();
+
+    // Add click listeners
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function() {
+        const theme = this.getAttribute('data-theme');
+        applyTheme(theme);
+        updateButtons();
+      });
+    });
+
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (getCurrentTheme() === 'system') {
+        document.documentElement.classList.toggle('dark', e.matches);
+      }
+    });
+  })();
+</script>

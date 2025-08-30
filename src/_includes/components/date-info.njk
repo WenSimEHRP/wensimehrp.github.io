@@ -1,0 +1,19 @@
+<!-- Date Information Component -->
+{% if created or page.inputPath %}
+<div class="mt-8 pt-6 border-t border-gray-200 dark:border-gray-700">
+  <div class="text-sm text-gray-500 dark:text-gray-400 space-y-1">
+    {% if created %}
+    <div>
+      <i class="fas fa-calendar-plus mr-2"></i>
+      Created: {{ created | formatDate }}
+    </div>
+    {% endif %}
+    {% if page.inputPath %}
+    <div>
+      <i class="fas fa-calendar-check mr-2"></i>
+      Last updated: {{ page.inputPath | lastModified | formatDate }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endif %}
