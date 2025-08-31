@@ -23,14 +23,14 @@
       <article class="flex-1 max-w-4xl pl-4 pr-8">
         <div class="prose prose-gray dark:prose-invert max-w-none">
           <h1>{{ title }}</h1>
-          {% include "components/date-info.njk" %}
+          {% include "components/metadata.njk" %}
           {% if description %}
           <p><i>{{ description | safe }}</i></p>
           {% endif %}
           {% if license %}
           <div class="flex items-center gap-3 py-2 px-4">
             <span class="text-red-600"><i class="fa-solid fa-ban"></i></span>
-            <span class="text-sm">
+            <span class="text-sm text-gray-500 dark:text-gray-400">
               This article is not licensed under the default license.<br>
               It is instead {{ license }}.<br>
               Please contact the author for permissions regarding reusing.
