@@ -2,9 +2,8 @@
 layout: layout.njk
 title: Blog Home
 created: 2025-08-29
+description: "A collection of thoughts, tutorials, and explorations in technology."
 ---
-
-<p>A collection of thoughts, tutorials, and explorations in technology.</p>
 
 <h2>Recent Articles & Updates</h2>
 
@@ -19,13 +18,18 @@ created: 2025-08-29
         <p class="text-gray-600 dark:text-gray-400 mb-3">{{ post.data.description }}</p>
         {% endif %}
         <div class="flex items-center text-sm text-gray-500 dark:text-gray-500 space-x-4">
-            {% if post.data.created %}
+            {% if post.inputPath %}
             <span>
                 <i class="fa-solid fa-calendar mr-1"></i>
-                {{ post.data.created | formatDate }}
+                {{ post.inputPath | lastModified | formatDate }}
             </span>
             {% endif %}
-
+            {% if post.data.author %}
+            <span>
+                <i class="fa-solid fa-user mr-1"></i>
+                {{ post.data.author }}
+            </span>
+            {% endif %}
             {% if post.data.tags %}
             <div class="flex flex-wrap gap-2">
                 {% for tag in post.data.tags %}

@@ -3,6 +3,8 @@ title: "Building a Blog"
 layout: layout.njk
 description: "Presumably, my first site in my life."
 created: 2025-08-30
+license: "All rights reserved"
+author: "Jeremy Gao"
 tags: ["blog"]
 ---
 

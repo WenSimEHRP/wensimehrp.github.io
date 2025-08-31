@@ -90,6 +90,16 @@ export default function (eleventyConfig) {
     });
   });
 
+  /**
+   * Format dates to show only the year
+   * Example: "2025"
+   */
+  eleventyConfig.addFilter("formatYear", function (date) {
+    if (!date) return '';
+    const d = new Date(date);
+    return d.getFullYear().toString();
+  });
+
   // ========================================
   // TAILWIND CSS INTEGRATION
   // ========================================

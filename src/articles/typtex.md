@@ -4,6 +4,7 @@ description: "Messing typst with macros"
 created: 2025-08-29
 layout: layout.njk
 tags: ["articles", "typesetting", "tools"]
+author: "Jeremy Gao"
 ---
 
 ## Typst vs Latex
