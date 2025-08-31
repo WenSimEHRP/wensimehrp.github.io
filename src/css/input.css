@@ -22,3 +22,10 @@ a:hover {
 .dark .prose a:hover {
   color: rgb(45 212 191); /* teal-400 */
 }
+
+/* make code blocks flexible */
+.prose code {
+  display: inline;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
