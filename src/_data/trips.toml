@@ -1,4 +1,67 @@
 [[trip]]
+date = 2024-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 RapidBus"
+departure = "W 41 Ave @ Granville St"
+arrival = "SW Marine Dr"
+fare = "CA$2.15"
+notes = "Concession fare; mechanical failure"
+
+[[trip]]
+date = 2024-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "049"
+departure = "SW Marine Dr"
+arrival = "Wesbrook Mall @ Birney Ave"
+notes = "Picked up passenger from failed bus"
+
+[[trip]]
+date = 2024-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "025"
+departure = "W 16 Ave @ Wesbrook Mall"
+arrival = "Southbound Dunbar St @ W 17 Ave"
+
+[[trip]]
+date = 2024-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "007"
+departure = "Southbound Dunbar St @ W 17 Ave"
+arrival = "Southbound Dunbar St @ W 39 Ave"
+
+[[trip]]
+date = 2024-12-24T00:00:00-08:00
+agency = "TransLink"
+type = "Bus"
+route = "017"
+departure = "Oak St @ W 33 Ave"
+arrival = "Marine Drive Station"
+
+[[trip]]
+date = 2024-12-24T00:00:00-08:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Canada Line"
+departure = "Marine Drive Station"
+arrival = "Aberdeen Station"
+fare = "CA$3.20"
+notes = "Concession fare"
+
+[[trip]]
+date = 2024-12-24T00:00:00-08:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Canada Line"
+departure = "Aberdeen Station"
+arrival = "Oakridge–41st Ave Station"
+fare = "CA$3.20"
+notes = "Concession fare"
+
+[[trip]]
 dateStr = "Early 2025"
 agency = "TransLink"
 type = "SkyTrain"
