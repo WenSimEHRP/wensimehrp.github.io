@@ -7,6 +7,7 @@
  * - Tailwind CSS integration
  * - Font Awesome font copying
  * - File watching and hot reload
+ * - TOML data file support
  */
 
 import { execSync } from 'child_process';
@@ -15,8 +16,18 @@ import markdownItFootnote from 'markdown-it-footnote';
 import markdownItAnchor from 'markdown-it-anchor';
 import markdownItAttrs from 'markdown-it-attrs';
 import markdownItDeflist from 'markdown-it-deflist';
+import TOML from '@iarna/toml';
 
 export default function (eleventyConfig) {
+
+  // ========================================
+  // DATA FILE FORMATS
+  // ========================================
+
+  /**
+   * Add TOML data file support
+   */
+  eleventyConfig.addDataExtension("toml", contents => TOML.parse(contents));
 
   // ========================================
   // MARKDOWN CONFIGURATION (GFM)

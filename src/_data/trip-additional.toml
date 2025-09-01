@@ -1,0 +1,31 @@
+[[agency.TransLink]]
+image = "https://upload.wikimedia.org/wikipedia/commons/3/3e/TransLink_%28Vancouver%29_Logo.svg"
+site = "https://translink.ca"
+
+[[agency."BC Ferries"]]
+image = "https://upload.wikimedia.org/wikipedia/en/2/21/BC_Ferries_Logo.svg"
+site = "https://www.bcferries.com/"
+
+[[agency."Cathay Pacific"]]
+image = "https://upload.wikimedia.org/wikipedia/en/1/17/Cathay_Pacific_logo.svg"
+site = "https://www.cathaypacific.com/"
+
+[[type.SkyTrain]]
+icon = '<i class="fa-solid fa-train-subway"></i>'
+colorClasses = "bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200"
+
+[[type.RapidBus]]
+icon = '<i class="fa-solid fa-bus"></i>'
+colorClasses = "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200"
+
+[[type.Bus]]
+icon = '<i class="fa-solid fa-bus"></i>'
+colorClasses = "bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200"
+
+[[type.Ferry]]
+icon = '<i class="fa-solid fa-ship"></i>'
+colorClasses = "bg-blue-200 dark:bg-blue-950 text-blue-800 dark:text-blue-200"
+
+[[type.Plane]]
+icon = '<i class="fa-solid fa-plane"></i>'
+colorClasses = "bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200"

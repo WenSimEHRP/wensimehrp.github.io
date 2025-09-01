@@ -1,0 +1,132 @@
+[[trip]]
+dateStr = "Early 2025"
+agency = "TransLink"
+type = "Bus"
+route = "620"
+departure = "Bridgeport Station"
+arrival = "Tsawwassen Ferry Terminal"
+fare = "CA$2.15"
+
+[[trip]]
+dateStr = "Early 2025"
+agency = "BC Ferries"
+type = "Ferry"
+route = "Coastal Celebration"
+departure = "Tsawwassen Ferry Terminal"
+arrival = "Swartz Bay Terminal"
+fare = "CA$15.00"
+
+[[trip]]
+dateStr = "Early 2025"
+agency = "BC Ferries"
+type = "Ferry"
+route = "Spirit of British Columbia"
+departure = "Swartz Bay Terminal"
+arrival = "Tsawwassen Ferry Terminal"
+fare = "CA$15.00"
+
+[[trip]]
+dateStr = "Early 2025"
+agency = "TransLink"
+type = "Bus"
+route = "620"
+departure = "Tsawwassen Ferry Terminal"
+arrival = "Bridgeport Station"
+fare = "CA$2.15"
+
+[[trip]]
+dateStr = "Mid 2025"
+agency = "Cathay Pacific"
+type = "Plane"
+route = "CX 865"
+departure = "YVR (CYVR)"
+arrival = "HKG (VHHH)"
+
+[[trip]]
+dateStr = "Mid 2025"
+agency = "Cathay Pacific"
+type = "Plane"
+route = "CX 316"
+departure = "HKG (VHHH)"
+arrival = "PVG (ZSPD)"
+
+[[trip]]
+dateStr = "Mid 2025"
+agency = "Cathay Pacific"
+type = "Plane"
+route = "CX 381"
+departure = "PVG (ZSPD)"
+arrival = "HKG (VHHH)"
+
+[[trip]]
+dateStr = "Mid 2025"
+agency = "Cathay Pacific"
+type = "Plane"
+route = "CX 888"
+departure = "HKG (VHHH)"
+arrival = "YVR (CYVR)"
+
+[[trip]]
+date = 2025-08-28T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Expo Line"
+departure = "Commercial–Broadway station"
+arrival = "Metrotown Station"
+fare = "CA$3.30"
+notes = "Concession fee"
+
+[[trip]]
+date = 2025-08-28T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Expo Line"
+departure = "Metrotown Station"
+arrival = "Joyce–Collingwood Station"
+fare = "CA$3.30"
+notes = "Concession fee"
+
+[[trip]]
+date = 2025-08-28T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 RapidBus"
+departure = "Joyce Station"
+arrival = "W 41 Ave @ Granville St"
+
+[[trip]]
+date = 2025-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 RapidBus"
+departure = "W 41 Ave @ Granville St"
+arrival = "Joyce Station"
+fare = "CA$3.30"
+notes = "Concession fee"
+
+[[trip]]
+date = 2025-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Expo Line"
+departure = "Joyce–Collingwood Station"
+arrival = "Metrotown Station"
+fare = 0.00
+
+[[trip]]
+date = 2025-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Expo Line"
+departure = "Metrotown Station"
+arrival = "Waterfront Station"
+fare = "CA$3.30"
+
+[[trip]]
+date = 2025-08-30T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Canada Line"
+departure = "Waterfront Station"
+arrival = "Oakridge–41st Ave Station"
+fare = 0.00

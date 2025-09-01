@@ -1,0 +1,157 @@
+---
+layout: layout-without-toc.njk
+title: Travel Log
+description: "A record of my transportation and travel history"
+created: 2025-08-31
+---
+
+<ul class="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-tight">
+    <li>Click on station names to view them on Google Maps</li>
+    <li>Travel logs start from 2025. Some earlier trips are included, but may not be complete.</li>
+    <li>Agency logos are fetched from various sources, and may not always be accurate or up-to-date.</li>
+</ul>
+
+<!-- Summary Stats -->
+<div
+    class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 mt-6 [&>div]:bg-white [&>div]:dark:bg-gray-800 [&>div]:p-4 [&>div]:rounded-lg [&>div]:border [&>div]:border-gray-200 [&>div]:dark:border-gray-700 [&>div>div:first-child]:text-2xl [&>div>div:first-child]:font-bold [&>div>div:first-child]:text-teal-600 [&>div>div:first-child]:dark:text-teal-400 [&>div>div:last-child]:text-sm [&>div>div:last-child]:text-gray-600 [&>div>div:last-child]:dark:text-gray-400">
+    <div>
+        <div>{{ trips.trip.length }}</div>
+        <div>Total Trips</div>
+    </div>
+    <div>
+        <div>
+            {% assign uniqueRoutes = "" | split: "," %}
+            {% for trip in trips.trip %}
+            {% unless uniqueRoutes contains trip.route %}
+            {% assign uniqueRoutes = uniqueRoutes | push: trip.route %}
+            {% endunless %}
+            {% endfor %}
+            {{ uniqueRoutes.size }}
+        </div>
+        <div>Unique routes/vehicles</div>
+    </div>
+    <div>
+        <div>
+            {% assign agencies = "" | split: "," %}
+            {% for trip in trips.trip %}
+            {% unless agencies contains trip.agency %}
+            {% assign agencies = agencies | push: trip.agency %}
+            {% endunless %}
+            {% endfor %}
+            {{ agencies.size }}
+        </div>
+        <div>Transit agencies</div>
+    </div>
+    <div>
+        <div>
+            {% assign uniqueStations = "" | split: "," %}
+            {% for trip in trips.trip %}
+            {% unless uniqueStations contains trip.departure %}
+            {% assign uniqueStations = uniqueStations | push: trip.departure %}
+            {% endunless %}
+            {% unless uniqueStations contains trip.arrival %}
+            {% assign uniqueStations = uniqueStations | push: trip.arrival %}
+            {% endunless %}
+            {% endfor %}
+            {{ uniqueStations.size }}
+        </div>
+        <div>Stations/bays visited</div>
+    </div>
+</div>
+
+<!-- Trips Table -->
+<div class="bg-white dark:bg-gray-800 outline outline-gray-200 dark:outline-gray-700">
+    <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <thead
+            class="bg-gray-50 dark:bg-gray-700 [&_th]:px-3 [&_th]:py-4 [&_th]:text-left [&_th]:text-xs [&_th]:font-medium [&_th]:text-gray-500 [&_th]:dark:text-gray-300 [&_th]:uppercase [&_th]:tracking-wider">
+            <tr>
+                <th>Date</th>
+                <th>Agency</th>
+                <th>Route/Number</th>
+                <th>From</th>
+                <th>To</th>
+                <th>Fare</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        <tbody
+            class="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700 [&_tr]:hover:bg-gray-50 [&_tr]:dark:hover:bg-gray-700 [&_tr]:transition-colors [&_td]:px-3 [&_td]:py-1 [&_td]:text-sm [&_td]:text-gray-900 [&_td]:dark:text-gray-100 [&_td]:align-middle [&_td]:whitespace-nowrap [&_td]:h-9 [&_td]:max-h-9">
+            {% for trip in trips.trip reversed %}
+            <tr>
+                <td>
+                    {% if trip.date %}
+                    {{ trip.date | formatDate }}
+                    {% else %}
+                    {% if trip.dateStr %}
+                    {{ trip.dateStr }}
+                    {% else %}
+                    <span class="text-gray-400">-</span>
+                    {% endif %}
+                    {% endif %}
+                </td>
+                <td>
+                    {% assign agencyData = trip-additional.agency[trip.agency] %}
+                    {% if agencyData and agencyData.first.image %}
+                    {% assign agency = agencyData.first %}
+                    <a href="{{ agency.site }}" target="_blank" rel="noopener noreferrer" title="{{ trip.agency }}"><img
+                            src="{{ agency.image }}" alt="{{ agency.name }}"
+                            class="inline-block h-full w-auto max-w-20 m-0 p-0 align-middle border-0 object-contain"
+                            style="vertical-align: middle; margin: 0; padding: 0;" /></a>
+                    {% else %}
+                    <span
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 truncate"
+                        title="{{ trip.agency }}">
+                        {{ trip.agency }}
+                    </span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% assign typeData = trip-additional.type[trip.type] %}
+                    {% if typeData and typeData.first.colorClasses %}
+                    {% assign colorClasses = typeData.first.colorClasses %}
+                    {% else %}
+                    {% assign colorClasses = "bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-gray-200" %}
+                    {% endif %}
+                    <span
+                        class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium {{ colorClasses }} min-w-30 max-w-30 overflow-hidden"
+                        title="{{ trip.route }}">
+                        {% if typeData and typeData.first.icon %}
+                        {{ typeData.first.icon }}
+                        <span class="ml-1 truncate">{{ trip.route }}</span>
+                        {% else %}
+                        <span class="truncate">{{ trip.route }}</span>
+                        {% endif %}
+                    </span>
+                </td>
+                <td>
+                    <a class="no-underline truncate block"
+                        href="https://www.google.com/maps/search/{{ trip.departure }}" target="_blank"
+                        rel="noopener noreferrer" title="{{ trip.departure }}">
+                        {{ trip.departure }}
+                    </a>
+                </td>
+                <td>
+                    <a class="no-underline truncate block" href="https://www.google.com/maps/search/{{ trip.arrival }}"
+                        target="_blank" rel="noopener noreferrer" title="{{ trip.arrival }}">
+                        {{ trip.arrival }}
+                    </a>
+                </td>
+                <td>
+                    {% if not trip.fare or trip.fare == 0 or trip.fare == "0.00" %}
+                    <span class="text-gray-400">-</span>
+                    {% else %}
+                    <span class="font-medium text-teal-600 dark:text-teal-400">{{ trip.fare }}</span>
+                    {% endif %}
+                </td>
+                <td>
+                    {% if trip.notes and trip.notes != "" %}
+                    <span class="truncate block" title="{{ trip.notes }}">{{ trip.notes }}</span>
+                    {% else %}
+                    <span class="text-gray-400">-</span>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
