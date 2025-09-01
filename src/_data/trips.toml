@@ -123,6 +123,7 @@ route = "Expo Line"
 departure = "Metrotown Station"
 arrival = "Waterfront Station"
 fare = "CA$3.30"
+notes = "Concession fare"
 
 [[trip]]
 date = 2025-08-30T00:00:00-07:00
