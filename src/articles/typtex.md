@@ -1,6 +1,6 @@
 ---
 title: "Typtex!"
-description: "Messing typst with macros"
+description: "Messing typst with macros."
 created: 2025-08-29
 layout: layout.njk
 tags: ["articles", "typesetting", "tools"]
