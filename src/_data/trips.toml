@@ -6,6 +6,7 @@ route = "620"
 departure = "Bridgeport Station"
 arrival = "Tsawwassen Ferry Terminal"
 fare = "CA$2.15"
+notes = "Concession fare"
 
 [[trip]]
 dateStr = "Early 2025"
@@ -33,6 +34,7 @@ route = "620"
 departure = "Tsawwassen Ferry Terminal"
 arrival = "Bridgeport Station"
 fare = "CA$2.15"
+notes = "Concession fare"
 
 [[trip]]
 dateStr = "Mid 2025"
@@ -74,7 +76,7 @@ route = "Expo Line"
 departure = "Commercial–Broadway station"
 arrival = "Metrotown Station"
 fare = "CA$3.30"
-notes = "Concession fee"
+notes = "Concession fare"
 
 [[trip]]
 date = 2025-08-28T00:00:00-07:00
@@ -84,7 +86,7 @@ route = "Expo Line"
 departure = "Metrotown Station"
 arrival = "Joyce–Collingwood Station"
 fare = "CA$3.30"
-notes = "Concession fee"
+notes = "Concession fare"
 
 [[trip]]
 date = 2025-08-28T00:00:00-07:00
@@ -102,7 +104,7 @@ route = "R4 RapidBus"
 departure = "W 41 Ave @ Granville St"
 arrival = "Joyce Station"
 fare = "CA$3.30"
-notes = "Concession fee"
+notes = "Concession fare"
 
 [[trip]]
 date = 2025-08-30T00:00:00-07:00
