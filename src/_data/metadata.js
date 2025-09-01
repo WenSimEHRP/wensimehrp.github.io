@@ -28,6 +28,7 @@ export default {
         email: "wensimerhp@gmail.com",
         github: "wensimehrp",
         x: "wensimehrp",
+        bilibili: "678638087"
     },
     commitSha: getCommitSha()
 }
