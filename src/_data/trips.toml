@@ -1,12 +1,21 @@
 [[trip]]
 dateStr = "Early 2025"
 agency = "TransLink"
+type = "SkyTrain"
+route = "Canada Line"
+departure = "Oakridge–41st Ave Station"
+arrival = "Bridgeport Station"
+fare = "CA$3.20"
+notes = "Concession fare"
+
+
+[[trip]]
+dateStr = "Early 2025"
+agency = "TransLink"
 type = "Bus"
 route = "620"
 departure = "Bridgeport Station"
 arrival = "Tsawwassen Ferry Terminal"
-fare = "CA$2.15"
-notes = "Concession fare"
 
 [[trip]]
 dateStr = "Early 2025"
