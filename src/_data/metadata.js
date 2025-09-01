@@ -30,5 +30,6 @@ export default {
         x: "wensimehrp",
         bilibili: "678638087"
     },
+    source: "https://github.com/wensimehrp/wensimehrp.github.io",
     commitSha: getCommitSha()
 }
