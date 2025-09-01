@@ -78,6 +78,54 @@ departure = "HKG (VHHH)"
 arrival = "YVR (CYVR)"
 
 [[trip]]
+date = 2025-08-16T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 RapidBus"
+departure = "W 41 Ave @ Granville St"
+arrival = "W 16 Ave @ Wesbrook Mall"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-08-16T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 RapidBus"
+departure = "W 16 Ave @ Wesbrook Mall"
+arrival = "W 41 Ave @ Granville St"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-08-17T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "025"
+departure = "W King Edward Ave @ Granville St"
+arrival = "W 16 Ave @ Wallace St"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-08-17T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "025"
+departure = "W 16 Ave @ Camosun St"
+arrival = "Wesbrook Mall @ 2100 Block"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-08-17T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 RapidBus"
+departure = "UBC Exchange"
+arrival = "W 41 Ave @ Granville St"
+
+[[trip]]
 date = 2025-08-28T00:00:00-07:00
 agency = "TransLink"
 type = "SkyTrain"
