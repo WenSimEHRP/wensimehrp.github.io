@@ -1,3 +1,4 @@
+@import "normalize.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 @import '@fortawesome/fontawesome-free/css/all.min.css';
