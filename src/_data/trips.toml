@@ -253,3 +253,21 @@ route = "Canada Line"
 departure = "Waterfront Station"
 arrival = "Oakridge–41st Ave Station"
 fare = 0.00
+
+[[trip]]
+date = 2025-09-01T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "017"
+departure = "Oak St @ W 33 Ave"
+arrival = "Marine Drive Station"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-09-01T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Canada Line"
+departure = "Marine Drive Station"
+arrival = "Aberdeen Station"
