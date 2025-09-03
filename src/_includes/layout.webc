@@ -23,7 +23,7 @@
   <main class="flex-1 pb-20">
     <div class="max-w-7xl mx-auto px-6 py-12 flex gap-8">
       <!-- Article Content -->
-      <article class="flex-1 max-w-4xl pl-4 pr-8">
+      <article class="flex-1 max-w-full col-span-2">
         <div class="prose prose-gray dark:prose-invert max-w-none">
           <h1 @text="title"></h1>
           <page-metadata :created="created" :author="author" :page="page" :metadata="metadata"></page-metadata>
@@ -38,16 +38,13 @@
           </div>
           <template @raw="content" webc:nokeep></template>
         </div>
-
       </article>
-
       <toc></toc>
     </div>
   </main>
 
   <floating-footer :author="author" :created="created" :license="license" :metadata="metadata"></floating-footer>
   <stable-footer :author="author" :created="created" :license="license" :metadata="metadata"></stable-footer>
-
   <toc-script></toc-script>
 
   <!-- WebC JS Bundle -->
