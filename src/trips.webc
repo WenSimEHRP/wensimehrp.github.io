@@ -21,7 +21,7 @@ license: "All rights reserved"
                 label: 'Total Trips'
             },
             {
-                value: trips.trip ? [...new Set(trips.trip.map(trip => trip.route))].length : 0,
+                value: trips.trip ? [...new Set(trips.trip.map(trip => trip.agency + trip.route))].length : 0,
                 label: 'Unique routes/vehicles'
             },
             {
