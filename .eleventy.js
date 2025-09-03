@@ -17,8 +17,21 @@ import markdownItAnchor from 'markdown-it-anchor';
 import markdownItAttrs from 'markdown-it-attrs';
 import markdownItDeflist from 'markdown-it-deflist';
 import TOML from '@iarna/toml';
+import pluginWebc from '@11ty/eleventy-plugin-webc';
 
 export default function (eleventyConfig) {
+
+  // ========================================
+  // WEBC PLUGIN
+  // ========================================
+
+  /**
+   * Add WebC support for single file web components
+   */
+  eleventyConfig.addPlugin(pluginWebc, {
+    // Global components available everywhere
+    components: "src/_includes/components/**/*.webc"
+  });
 
   // ========================================
   // DATA FILE FORMATS
@@ -102,6 +115,20 @@ export default function (eleventyConfig) {
   });
 
   /**
+   * Format dates with short month names
+   * Example: "Aug 29, 2025"
+   */
+  eleventyConfig.addFilter("formatDateShort", function (date) {
+    if (!date) return '';
+    const d = new Date(date);
+    return d.toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
+    });
+  });
+
+  /**
    * Format dates to show only the year
    * Example: "2025"
    */
@@ -136,7 +163,7 @@ export default function (eleventyConfig) {
   eleventyConfig.on('eleventy.before', buildTailwind);
 
   // Watch template files and CSS for changes
-  eleventyConfig.addWatchTarget("src/**/*.{njk,md,html}");
+  eleventyConfig.addWatchTarget("src/**/*.{njk,webc,md,html}");
   eleventyConfig.addWatchTarget("src/css/input.css");
 
   // Rebuild CSS when watched files change

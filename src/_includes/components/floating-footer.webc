@@ -3,39 +3,18 @@
   class="fixed bottom-0 left-0 right-0 bg-teal-950 dark:bg-teal-900 border-t border-teal-900 dark:border-gray-800 transition-transform duration-300">
   <div class="px-6 py-3">
     <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-      <p class="text-sm text-neutral-200">
-        <i class="fa-regular fa-copyright"></i>
-        {% if author and author != metadata.author.name %}
-        {{ created | formatYear }} {{ author }}
-        {% else %}
-        {{ metadata.copyrightYearRange }} {{ metadata.author.name }}
-        {% endif %}
-        <span class="text-gray-400 mx-2">|</span>
-        {% if license %}
-        <span class="text-neutral-200">{{ license }}</span>
-        {% else %}
-        <a href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank" rel="noopener"
-          class="text-neutral-200 transition-colors">
-          <i class="fa-brands fa-creative-commons"></i><i class="fa-brands fa-creative-commons-by"></i><i
-            class="fa-brands fa-creative-commons-nc"></i>
-          4.0
-        </a>
-        {% endif %}
-        unless stated
-        {% if metadata.commitSha %}
-        <span class="text-gray-400 mx-2 hidden sm:inline">|</span>
-        <a href="https://github.com/wensimehrp/blog/commit/{{ metadata.commitSha.full }}" target="_blank" rel="noopener"
-          class="text-gray-400 hidden sm:inline transition-colors">
-          <i class="fa-solid fa-code-commit"></i>
-          {{ metadata.commitSha.short }}
-        </a>
-        {% endif %}
+      <p class="text-sm">
+        <copyright :author="author" :created="created"></copyright>
+        <license :license="license"></license>
+        <span class="hidden sm:inline">
+          <commit :metadata="metadata"></commit>
+        </span>
       </p>
     </div>
   </div>
 </footer>
 
-<script>
+<script webc:keep>
   document.addEventListener('DOMContentLoaded', function () {
     const floatingFooter = document.getElementById('floating-footer');
     const stableFooter = document.querySelector('footer.mt-auto');

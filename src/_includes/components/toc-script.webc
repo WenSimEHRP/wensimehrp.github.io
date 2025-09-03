@@ -1,5 +1,5 @@
 <!-- JavaScript Component -->
-<script>
+<script webc:keep>
   document.addEventListener('DOMContentLoaded', function () {
     const article = document.querySelector('article .prose');
     const tocList = document.getElementById('toc-list');

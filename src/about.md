@@ -1,5 +1,5 @@
 ---
-layout: layout.njk
+layout: layout.webc
 title: "Aboot!"
 created: 2025-08-29
 description: "Almost everything about this site, where I share my thoughts."

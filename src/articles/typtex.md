@@ -2,7 +2,7 @@
 title: "Typtex!"
 description: "Messing typst with macros."
 created: 2025-08-29
-layout: layout.njk
+layout: layout.webc
 tags: ["articles", "typesetting", "tools"]
 author: "Jeremy Gao"
 ---

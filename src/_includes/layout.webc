@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title @text="title || metadata.title"></title>
+  <meta name="description" :content="metadata.description">
+  <meta name="author" :content="metadata.author.name">
+  <link rel="canonical" :href="metadata.url">
+  <link href="/css/output.css" rel="stylesheet" webc:keep>
+
+  <!-- WebC CSS Bundle -->
+  <style @raw="getBundle('css')" webc:keep></style>
+</head>
+
+<body
+  class="bg-gray-50 dark:bg-gray-800 text-gray-900 dark:text-gray-100 antialiased min-h-screen flex flex-col transition-colors">
+  <dark-mode-toggle></dark-mode-toggle>
+  <header :metadata="metadata"></header>
+
+  <!-- Main Content -->
+  <main class="flex-1 pb-20">
+    <div class="max-w-7xl mx-auto px-6 py-12 flex gap-8">
+      <!-- Article Content -->
+      <article class="flex-1 max-w-4xl pl-4 pr-8">
+        <div class="prose prose-gray dark:prose-invert max-w-none">
+          <h1 @text="title"></h1>
+          <page-metadata :created="created" :author="author" :page="page" :metadata="metadata"></page-metadata>
+          <p webc:if="description"><i @html="description"></i></p>
+          <div webc:if="license" class="flex items-center gap-3 py-2 px-4">
+            <span class="text-red-600"><i class="fa-solid fa-ban"></i></span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">
+              This article is not licensed under the default license.<br>
+              It is instead <span @text="license"></span>.<br>
+              Please contact the author for permissions regarding reusing.
+            </span>
+          </div>
+          <template @raw="content" webc:nokeep></template>
+        </div>
+
+      </article>
+
+      <toc></toc>
+    </div>
+  </main>
+
+  <floating-footer :author="author" :created="created" :license="license" :metadata="metadata"></floating-footer>
+  <stable-footer :author="author" :created="created" :license="license" :metadata="metadata"></stable-footer>
+
+  <toc-script></toc-script>
+
+  <!-- WebC JS Bundle -->
+  <script @raw="getBundle('js')" webc:keep></script>
+</body>
+
+</html>

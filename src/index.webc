@@ -1,0 +1,28 @@
+---
+layout: layout.webc
+title: Blog Home
+created: 2025-08-29
+description: "A collection of thoughts, tutorials, and explorations in technology."
+---
+
+<a href="/trips" class="card no-underline max-w-fit">
+    <span class="text-sm font-semibold">
+        <i class="fa-solid fa-route mr-2"></i>
+        View Travel Log
+    </span>
+</a>
+
+<h2>Recent Articles & Updates</h2>
+
+<a webc:for="post of collections.articles.sort((a, b) => new Date(b.data.created) - new Date(a.data.created))" class="card no-underline mb-8 flex" :href="post.url">
+    <article class="text-left min-w-full">
+        <h3 class="mt-2" @text="post.data.title"></h3>
+        <p class="mb-3" @text="post.data.description"></p>
+        <span class="text-sm">
+            <i class="fa-solid fa-calendar"></i>
+            <span @text="formatDate(post.data.created)" class="mr-2"></span>
+            <span webc:for="tag of post.data.tags"
+                class="text-xs mr-1 py-0.5 px-1 bg-gray-200 dark:bg-gray-600 rounded-sm" @text="tag"></span>
+        </span>
+    </article>
+</a>
