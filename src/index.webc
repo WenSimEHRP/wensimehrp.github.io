@@ -14,11 +14,12 @@ description: "A collection of thoughts, tutorials, and explorations in technolog
 
 <h2>Recent Articles & Updates</h2>
 
-<a webc:for="post of collections.articles.sort((a, b) => new Date(b.data.created) - new Date(a.data.created))" class="card no-underline mb-8 flex" :href="post.url">
+<a webc:for="post of collections.articles.sort((a, b) => new Date(b.data.created) - new Date(a.data.created))"
+    class="card no-underline mb-8 flex" :href="post.url">
     <article class="text-left min-w-full">
         <h3 class="mt-2" @text="post.data.title"></h3>
         <p class="mb-3" @text="post.data.description"></p>
-        <span class="text-sm">
+        <span class="text-sm text-gray-500 dark:text-gray-400">
             <i class="fa-solid fa-calendar"></i>
             <span @text="formatDate(post.data.created)" class="mr-2"></span>
             <span webc:for="tag of post.data.tags"
