@@ -181,6 +181,11 @@ export default function (eleventyConfig) {
     "node_modules/@fortawesome/fontawesome-free/webfonts": "webfonts"
   });
 
+  // Copy Merriweather Sans font files from node_modules to output
+  eleventyConfig.addPassthroughCopy({
+    "node_modules/@fontsource-variable/merriweather-sans/files/*": "webfonts"
+  });
+
   // ========================================
   // ELEVENTY CONFIGURATION
   // ========================================

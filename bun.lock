@@ -5,6 +5,7 @@
       "name": "blog",
       "dependencies": {
         "@11ty/eleventy-plugin-webc": "^0.11.2",
+        "@fontsource-variable/merriweather-sans": "^5.2.6",
         "@fortawesome/fontawesome-free": "^7.0.0",
         "@iarna/toml": "^2.2.5",
         "markdown-it-anchor": "^9.2.0",
@@ -46,6 +47,8 @@
     "@11ty/recursive-copy": ["@11ty/recursive-copy@4.0.2", "", { "dependencies": { "errno": "^1.0.0", "junk": "^3.1.0", "maximatch": "^0.1.0", "slash": "^3.0.0" } }, "sha512-174nFXxL/6KcYbLYpra+q3nDbfKxLxRTNVY1atq2M1pYYiPfHse++3IFNl8mjPFsd7y2qQjxLORzIjHMjL3NDQ=="],
 
     "@11ty/webc": ["@11ty/webc@0.11.4", "", { "dependencies": { "@11ty/eleventy-utils": "^1.0.1", "css-tree": "^2.3.1", "dependency-graph": "^0.11.0", "entities": "^4.4.0", "fast-glob": "^3.2.12", "is-glob": "^4.0.3", "nanoid": "^4.0.1", "node-retrieve-globals": "^2.0.7", "parse5": "^7.1.2" } }, "sha512-q1GMcjNnx9PxUr6jyTT5CdDFma3JWkT5D45wRNYUQ/B4cxTTxpC15b2rYdzNaGuSqB6tsArQ9Qh4BPqg6Xo9cA=="],
+
+    "@fontsource-variable/merriweather-sans": ["@fontsource-variable/merriweather-sans@5.2.6", "", {}, "sha512-m1PqGAd/d7z55ZxnhoRbJD1DQUumP356CW2q3lB6AWMtrotVBIT8TJAFTiSllA9Y1qCSqUN4Mu4bHdqK9xM+Uw=="],
 
     "@fortawesome/fontawesome-free": ["@fortawesome/fontawesome-free@7.0.0", "", {}, "sha512-X48nISrSOa89zu2VMljC4XaRf8NmgTwQBVHfS2Nu5G00ZwM31oOVrAtGxZF3b6wDYf9lJsf/Eq4cCSFKIkOWPQ=="],
 
