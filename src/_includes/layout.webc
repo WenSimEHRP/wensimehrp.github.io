@@ -23,7 +23,7 @@
   <main class="flex-1 pb-20">
     <div class="max-w-7xl mx-auto px-6 py-12 flex gap-8">
       <!-- Article Content -->
-      <article class="flex-1 max-w-full col-span-2">
+      <article class="flex-1 max-w-full text-justify hyphens-auto">
         <div class="prose prose-gray dark:prose-invert max-w-none">
           <h1 @text="title"></h1>
           <page-metadata :created="created" :author="author" :page="page" :metadata="metadata"></page-metadata>
