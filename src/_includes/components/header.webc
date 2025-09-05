@@ -19,14 +19,14 @@
 
         <!-- Search Toggle Button -->
         <div class="relative">
-          <button id="search-toggle" class="text-gray-600 dark:text-gray-400 ">
+          <button id="search-toggle" class="text-gray-600 dark:text-gray-400 hover:text-teal-500 transition-colors">
             <i class="fa-solid fa-search"></i>
             Search
           </button>
 
           <!-- Search Overlay -->
           <div webc:keep id="search"
-            class="absolute top-full right-0 mt-2 w-80 z-50 hidden bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-2">
+            class="absolute top-full right-0 mt-2 w-80 z-50 opacity-0 pointer-events-none bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-2 transition-opacity duration-100 ease-in-out">
           </div>
         </div>
       </div>
@@ -51,21 +51,30 @@
       const searchElement = document.getElementById('search');
 
       searchToggle.addEventListener('click', () => {
-        searchElement.classList.toggle('hidden');
+        const isHidden = searchElement.classList.contains('opacity-0');
 
-        // Focus search input when opened
-        if (!searchElement.classList.contains('hidden')) {
+        if (isHidden) {
+          // Show: opacity 0 -> 100%, enable pointer events
+          searchElement.classList.remove('opacity-0', 'pointer-events-none');
+          searchElement.classList.add('opacity-100', 'pointer-events-auto');
+
+          // Focus search input when opened
           setTimeout(() => {
             const input = searchElement.querySelector('input');
             if (input) input.focus();
           }, 100);
+        } else {
+          // Hide: opacity 100% -> 0, disable pointer events
+          searchElement.classList.remove('opacity-100', 'pointer-events-auto');
+          searchElement.classList.add('opacity-0', 'pointer-events-none');
         }
       });
 
       // Close search when clicking outside
       document.addEventListener('click', (e) => {
         if (!searchToggle.contains(e.target) && !searchElement.contains(e.target)) {
-          searchElement.classList.add('hidden');
+          searchElement.classList.remove('opacity-100', 'pointer-events-auto');
+          searchElement.classList.add('opacity-0', 'pointer-events-none');
         }
       });
     });
