@@ -9,9 +9,15 @@ license: "All rights reserved"
 <ul class="text-sm text-gray-600 dark:text-gray-400 mb-4 leading-tight">
     <li>Click on station names to view them on Google Maps</li>
     <li>Travel logs start from 2025. Some earlier trips are included, but may not be complete.</li>
+    <li>Click on the agency logo to visit their homepage.</li>
     <li>Agency logos are fetched from various sources (mainly from <a href="https://commons.wikimedia.org/">Wikimedia
             Commons</a>). They may not always be accurate or up-to-date.</li>
+    <li>Through services are counted as separated companies.</li>
 </ul>
+
+This is a log of my trips using (public) transportation services around the world.
+This list includes buses, trains, ferries, planes, and other forms of transit. Private
+transportation (e.g. taxis, Uber, private cars, etc.) are not included.
 
 <!-- Summary Stats -->
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 mt-6">
