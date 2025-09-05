@@ -159,8 +159,26 @@ export default function (eleventyConfig) {
     }
   };
 
+  /**
+   * Build pagefind indices using the CLI
+   */
+  const buildPagefind = () => {
+    try {
+      console.log('🔍 Building Pagefind indices...');
+      execSync('bunx pagefind --site dist', {
+        stdio: 'inherit',
+        cwd: process.cwd()
+      });
+      console.log('✅ Pagefind indices built successfully');
+    } catch (error) {
+      console.error('❌ Pagefind build failed:', error.message);
+    }
+  }
+
   // Build CSS before Eleventy starts
   eleventyConfig.on('eleventy.before', buildTailwind);
+  // Build Pagefind indices after Eleventy finishes
+  eleventyConfig.on('eleventy.after', buildPagefind);
 
   // Watch template files and CSS for changes
   eleventyConfig.addWatchTarget("src/**/*.{njk,webc,md,html}");
@@ -183,7 +201,7 @@ export default function (eleventyConfig) {
 
   // Copy Merriweather Sans font files from node_modules to output
   eleventyConfig.addPassthroughCopy({
-    "node_modules/@fontsource-variable/merriweather-sans/files/*": "webfonts"
+    "node_modules/@fontsource-variable/merriweather-sans/files/*": "css/files"
   });
 
   // ========================================

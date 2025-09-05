@@ -2,21 +2,72 @@
 <header class="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700 transition-colors">
   <div class="max-w-4xl mx-auto px-6 py-6">
     <nav class="flex items-center justify-between">
-      <a href="/"
-        class="text-xl font-bold text-gray-900 dark:text-gray-100 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
-        @text="metadata.title"></a>
+
+      <!-- Site Title -->
+      <a href="/" class="text-xl font-bold text-gray-900 dark:text-gray-400 " @text="metadata.title"></a>
+
+      <!-- Navigation Links -->
       <div class="flex items-center space-x-6 text-sm">
-        <a href="/"
-          class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+        <a href="/" class="text-gray-600 dark:text-gray-400 ">
           <i class="fa-solid fa-house"></i>
           Home
         </a>
-        <a href="/about"
-          class="text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">
+        <a href="/about" class="text-gray-600 dark:text-gray-400 ">
           <i class="fa-solid fa-circle-info"></i>
           About
         </a>
+
+        <!-- Search Toggle Button -->
+        <div class="relative">
+          <button id="search-toggle" class="text-gray-600 dark:text-gray-400 ">
+            <i class="fa-solid fa-search"></i>
+            Search
+          </button>
+
+          <!-- Search Overlay -->
+          <div webc:keep id="search"
+            class="absolute top-full right-0 mt-2 w-80 z-50 hidden bg-white dark:bg-gray-800 shadow-lg rounded-lg border border-gray-200 dark:border-gray-700 p-2">
+          </div>
+        </div>
       </div>
+
     </nav>
   </div>
+
+  <!-- Pagefind Scripts and Styles -->
+  <link webc:keep href="/pagefind/pagefind-ui.css" rel="stylesheet">
+  <script webc:keep src="/pagefind/pagefind-ui.js"></script>
+  <script webc:keep>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      new PagefindUI({
+        element: "#search",
+        showSubResults: true,
+        showImages: false,
+        excerptLength: 30
+      });
+
+      // Toggle search visibility
+      const searchToggle = document.getElementById('search-toggle');
+      const searchElement = document.getElementById('search');
+
+      searchToggle.addEventListener('click', () => {
+        searchElement.classList.toggle('hidden');
+
+        // Focus search input when opened
+        if (!searchElement.classList.contains('hidden')) {
+          setTimeout(() => {
+            const input = searchElement.querySelector('input');
+            if (input) input.focus();
+          }, 100);
+        }
+      });
+
+      // Close search when clicking outside
+      document.addEventListener('click', (e) => {
+        if (!searchToggle.contains(e.target) && !searchElement.contains(e.target)) {
+          searchElement.classList.add('hidden');
+        }
+      });
+    });
+  </script>
 </header>
