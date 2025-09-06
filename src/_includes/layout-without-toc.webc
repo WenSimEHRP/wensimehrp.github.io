@@ -28,6 +28,12 @@
           <h1 @text="title"></h1>
           <page-metadata :created="created" :author="author" :page="page" :metadata="metadata"></page-metadata>
           <p webc:if="description"><i @html="description"></i></p>
+          <div webc:if="wip" class="flex items-center gap-3 py-2 px-4">
+            <span class="text-sky-600"><i class="fa-solid fa-circle-info"></i></span>
+            <span class="text-sm text-gray-500 dark:text-gray-400">
+              This article is a work in progress.
+            </span>
+          </div>
           <div webc:if="license" class="flex items-center gap-3 py-2 px-4">
             <span class="text-red-600"><i class="fa-solid fa-ban"></i></span>
             <span class="text-sm text-gray-500 dark:text-gray-400">
