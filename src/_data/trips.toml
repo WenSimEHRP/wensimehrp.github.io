@@ -271,3 +271,39 @@ type = "SkyTrain"
 route = "Canada Line"
 departure = "Marine Drive Station"
 arrival = "Aberdeen Station"
+
+[[trip]]
+date = 2025-09-05T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "017"
+departure = "Oak St @ W 33 Ave"
+arrival = "Oak St @ W 49 Ave"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-09-05T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "049"
+departure = "W 49 Ave @ Oak St"
+arrival = "Metrotown Station"
+
+[[trip]]
+date = 2025-09-05T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Expo Line"
+departure = "Metrotown Station"
+arrival = "Joyce–Collingwood Station"
+fare = "CA$3.30"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-09-05T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 RapidBus"
+departure = "Joyce Station"
+arrival = "W 41 Ave @ Granville St"
