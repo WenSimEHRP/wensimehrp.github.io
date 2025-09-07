@@ -22,6 +22,10 @@ description: "A collection of thoughts, tutorials, and explorations in technolog
         <span class="text-sm text-gray-500 dark:text-gray-400">
             <i class="fa-solid fa-calendar"></i>
             <span @text="formatDate(post.data.created)" class="mr-2"></span>
+            <span webc:if="post.data.wip" class="mr-2">
+                <span class="text-sky-600"><i class="fa-solid fa-circle-info"></i></span>
+                <i>WIP</i>
+            </span>
             <span webc:for="tag of post.data.tags"
                 class="text-xs mr-1 py-0.5 px-1 bg-gray-200 dark:bg-gray-600 rounded-sm" @text="tag"></span>
         </span>
