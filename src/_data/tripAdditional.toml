@@ -29,3 +29,7 @@ colorClasses = "bg-blue-200 dark:bg-blue-950 text-blue-800 dark:text-blue-200"
 [type.Plane]
 icon = '<i class="fa-solid fa-plane"></i>'
 colorClasses = "bg-indigo-100 dark:bg-indigo-900 text-indigo-800 dark:text-indigo-200"
+
+[type.B-Line]
+icon = '<i class="fa-solid fa-bus"></i>'
+colorClasses = "bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200"

@@ -15,10 +15,6 @@ license: "All rights reserved"
     <li>Through services are counted as separate companies.</li>
 </ul>
 
-This is a log of my trips using (public) transportation services around the world.<br \>
-This list includes buses, trains, ferries, planes, and other forms of transit. <br \>
-Private transportation (e.g. taxis, Uber, private cars, etc.) are not included.
-
 <!-- Summary Stats -->
 <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8 mt-6">
     <div webc:for="stat of [
