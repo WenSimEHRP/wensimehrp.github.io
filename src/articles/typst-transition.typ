@@ -30,8 +30,7 @@ course, and sad news is that Typst does not support OOP now.#footnote[
   markdown compiler that translate all of markdown's components to html. Typst, on
   the other hand, does not have that luxury, which means that I would have to
   manually create the mappings from typst elements (or I should say basic typesetting
-  elements) to HTML elements. This footnote is created using a self-created footnote
-  mapper.
+  elements) to HTML elements. This footnote is created using a custom footnote mapper.
 ]
 
 So the decision is to make (at least some parts) of this site to be Typst. Typst
