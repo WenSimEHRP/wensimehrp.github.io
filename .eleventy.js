@@ -96,7 +96,7 @@ export default function (eleventyConfig) {
    * Create a collection of articles from the articles directory
    */
   eleventyConfig.addCollection("articles", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("src/articles/*.md");
+    return collectionApi.getFilteredByGlob("src/articles/*.{md,typ}");
   });
 
   // ========================================
