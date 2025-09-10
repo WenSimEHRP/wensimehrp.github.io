@@ -2,7 +2,7 @@
 date = 2024-08-30T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 UBC"
 departure = "W 41 Ave @ Granville St"
 arrival = "SW Marine Dr"
 fare = "CA$2.15"
@@ -12,7 +12,7 @@ notes = "Concession fare; mechanical failure"
 date = 2024-08-30T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "049"
+route = "49 UBC"
 departure = "SW Marine Dr"
 arrival = "Wesbrook Mall @ Birney Ave"
 notes = "Picked up passenger from failed bus"
@@ -21,23 +21,23 @@ notes = "Picked up passenger from failed bus"
 date = 2024-08-30T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "025"
+route = "25 Brentwood"
 departure = "W 16 Ave @ Wesbrook Mall"
-arrival = "Southbound Dunbar St @ W 17 Ave"
+arrival = "Dunbar St @ W 17 Ave"
 
 [[trip]]
 date = 2024-08-30T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "007"
-departure = "Southbound Dunbar St @ W 17 Ave"
-arrival = "Southbound Dunbar St @ W 39 Ave"
+route = "7 Dunbar"
+departure = "Dunbar St @ W 17 Ave"
+arrival = "Dunbar St @ W 39 Ave"
 
 [[trip]]
 date = 2024-12-24T00:00:00-08:00
 agency = "TransLink"
 type = "Bus"
-route = "017"
+route = "17 Oak"
 departure = "Oak St @ W 33 Ave"
 arrival = "Marine Drive Station"
 
@@ -71,12 +71,11 @@ arrival = "Bridgeport Station"
 fare = "CA$3.20"
 notes = "Concession fare"
 
-
 [[trip]]
 dateStr = "Early 2025"
 agency = "TransLink"
 type = "Bus"
-route = "620"
+route = "620 Tsawwassen"
 departure = "Bridgeport Station"
 arrival = "Tsawwassen Ferry Terminal"
 
@@ -84,7 +83,8 @@ arrival = "Tsawwassen Ferry Terminal"
 dateStr = "Early 2025"
 agency = "BC Ferries"
 type = "Ferry"
-route = "Coastal Celebration"
+route = "Van-Victoria"
+vehicle = "Coastal Celebration"
 departure = "Tsawwassen Ferry Terminal"
 arrival = "Swartz Bay Terminal"
 fare = "CA$15.00"
@@ -93,20 +93,11 @@ fare = "CA$15.00"
 dateStr = "Early 2025"
 agency = "BC Ferries"
 type = "Ferry"
-route = "Spirit of British Columbia"
+route = "Victoria-Van"
+vehicle = "Spirit of British Columbia"
 departure = "Swartz Bay Terminal"
 arrival = "Tsawwassen Ferry Terminal"
 fare = "CA$15.00"
-
-[[trip]]
-dateStr = "Early 2025"
-agency = "TransLink"
-type = "Bus"
-route = "620"
-departure = "Tsawwassen Ferry Terminal"
-arrival = "Bridgeport Station"
-fare = "CA$2.15"
-notes = "Concession fare"
 
 [[trip]]
 dateStr = "Mid 2025"
@@ -144,7 +135,7 @@ arrival = "YVR (CYVR)"
 date = 2025-08-16T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 UBC"
 departure = "W 41 Ave @ Granville St"
 arrival = "W 16 Ave @ Wesbrook Mall"
 fare = "CA$2.25"
@@ -154,7 +145,7 @@ notes = "Concession fare"
 date = 2025-08-16T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 Joyce"
 departure = "W 16 Ave @ Wesbrook Mall"
 arrival = "W 41 Ave @ Granville St"
 fare = "CA$2.25"
@@ -164,7 +155,7 @@ notes = "Concession fare"
 date = 2025-08-17T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "025"
+route = "25 UBC"
 departure = "W King Edward Ave @ Granville St"
 arrival = "W 16 Ave @ Wallace St"
 fare = "CA$2.25"
@@ -174,7 +165,7 @@ notes = "Concession fare"
 date = 2025-08-17T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "025"
+route = "25 UBC"
 departure = "W 16 Ave @ Camosun St"
 arrival = "Wesbrook Mall @ 2100 Block"
 fare = "CA$2.25"
@@ -184,7 +175,7 @@ notes = "Concession fare"
 date = 2025-08-17T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 Joyce"
 departure = "UBC Exchange"
 arrival = "W 41 Ave @ Granville St"
 
@@ -212,7 +203,7 @@ notes = "Concession fare"
 date = 2025-08-28T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 UBC"
 departure = "Joyce Station"
 arrival = "W 41 Ave @ Granville St"
 
@@ -220,7 +211,7 @@ arrival = "W 41 Ave @ Granville St"
 date = 2025-08-30T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 Joyce"
 departure = "W 41 Ave @ Granville St"
 arrival = "Joyce Station"
 fare = "CA$3.30"
@@ -258,7 +249,7 @@ fare = 0.00
 date = 2025-09-01T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "017"
+route = "17 Oak"
 departure = "Oak St @ W 33 Ave"
 arrival = "Marine Drive Station"
 fare = "CA$2.25"
@@ -276,7 +267,7 @@ arrival = "Aberdeen Station"
 date = 2025-09-05T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "017"
+route = "17 Oak"
 departure = "Oak St @ W 33 Ave"
 arrival = "Oak St @ W 49 Ave"
 fare = "CA$2.25"
@@ -286,7 +277,7 @@ notes = "Concession fare"
 date = 2025-09-05T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "049"
+route = "49 Metrotown"
 departure = "W 49 Ave @ Oak St"
 arrival = "Metrotown Station"
 
@@ -304,7 +295,7 @@ notes = "Concession fare"
 date = 2025-09-05T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 UBC"
 departure = "Joyce Station"
 arrival = "W 41 Ave @ Granville St"
 
@@ -312,7 +303,7 @@ arrival = "W 41 Ave @ Granville St"
 date = 2025-09-06T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "017"
+route = "17 Oak"
 departure = "Oak St @ Devonshire Cres"
 arrival = "Oak St @ W 41st Ave"
 fare = "CA$2.25"
@@ -322,7 +313,7 @@ notes = "Concession fare"
 date = 2025-09-06T00:00:00-07:00
 agency = "TransLink"
 type = "RapidBus"
-route = "R4 RapidBus"
+route = "R4 UBC"
 departure = "W 41 Ave @ Oak St"
 arrival = "W 16 Ave @ Wesbrook Mall"
 
@@ -330,7 +321,7 @@ arrival = "W 16 Ave @ Wesbrook Mall"
 date = 2025-09-06T00:00:00-07:00
 agency = "TransLink"
 type = "B-Line"
-route = "99 B-Line"
+route = "99 Commercial-Broadway B-Line"
 departure = "UBC Exchange"
 arrival = "Broadway-City Hall Station"
 fare = "CA$2.25"
@@ -340,6 +331,51 @@ notes = "Concession fare"
 date = 2025-09-06T00:00:00-07:00
 agency = "TransLink"
 type = "Bus"
-route = "017"
+route = "17 Oak"
 departure = "Broadway-City Hall Station"
 arrival = "Oak St @ Devonshire Cres"
+
+[[trip]]
+date = 2025-09-08T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "17 Downtown"
+departure = "Oak St @ Devonshire Cres"
+arrival = "Robson & Hamilton"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-09-08T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "17 Oak"
+departure = "Robson & Hamilton"
+arrival = "Granville St @ W Pender St"
+notes = "Non-stop"
+
+[[trip]]
+date = 2025-09-08T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R5 SFU"
+departure = "Hastings St @ Granville St"
+arrival = "Hastings St @ Renfrew St"
+
+[[trip]]
+date = 2025-09-08T00:00:00-07:00
+agency = "TransLink"
+type = "Bus"
+route = "27 Joyce"
+departure = "Adanac St @ Skeena St"
+arrival = "Joyce Station"
+fare = "CA$2.25"
+notes = "Concession fare"
+
+[[trip]]
+date = 2025-09-08T00:00:00-07:00
+agency = "TransLink"
+type = "RapidBus"
+route = "R4 UBC"
+departure = "Joyce Station"
+arrival = "W 41 Ave @ Granville St"

@@ -18,8 +18,16 @@ import markdownItAttrs from 'markdown-it-attrs';
 import markdownItDeflist from 'markdown-it-deflist';
 import TOML from '@iarna/toml';
 import pluginWebc from '@11ty/eleventy-plugin-webc';
+import { minify as htmlMinify } from 'html-minifier-terser';
+import typstEleventyPlugin from './src/_config/typst-eleventy-plugin.js';
 
 export default function (eleventyConfig) {
+
+  // ========================================
+  // SETTINGS & CONSTANTS
+  // ========================================
+
+  const isProd = process.env.NODE_ENV === 'production';
 
   // ========================================
   // WEBC PLUGIN
@@ -32,6 +40,15 @@ export default function (eleventyConfig) {
     // Global components available everywhere
     components: "src/_includes/components/**/*.webc"
   });
+
+  // ========================================
+  // TYPST PLUGIN
+  // ========================================
+
+  // Enable Typst (.typ) files to compile to HTML via our custom plugin
+  eleventyConfig.addPlugin(typstEleventyPlugin, { workspace: "." });
+  // Ensure Eleventy treats .typ as a template format
+  eleventyConfig.addTemplateFormats("typ");
 
   // ========================================
   // DATA FILE FORMATS
@@ -100,80 +117,50 @@ export default function (eleventyConfig) {
     }
   });
 
-  /**
-   * Format dates in human-readable English format
-   * Example: "August 29, 2025"
-   */
-  eleventyConfig.addFilter("formatDate", function (date) {
+  // DRY date formatting helper
+  const formatDate = (date, opts) => {
     if (!date) return '';
     const d = new Date(date);
-    return d.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
-    });
-  });
+    return d.toLocaleDateString('en-US', opts);
+  };
 
-  /**
-   * Format dates with short month names
-   * Example: "Aug 29, 2025"
-   */
-  eleventyConfig.addFilter("formatDateShort", function (date) {
-    if (!date) return '';
-    const d = new Date(date);
-    return d.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric'
-    });
-  });
+  eleventyConfig.addFilter("formatDate", (date) =>
+    formatDate(date, { year: 'numeric', month: 'long', day: 'numeric' })
+  );
 
-  /**
-   * Format dates to show only the year
-   * Example: "2025"
-   */
-  eleventyConfig.addFilter("formatYear", function (date) {
+  eleventyConfig.addFilter("formatDateShort", (date) =>
+    formatDate(date, { year: 'numeric', month: 'short', day: 'numeric' })
+  );
+
+  eleventyConfig.addFilter("formatYear", (date) => {
     if (!date) return '';
     const d = new Date(date);
     return d.getFullYear().toString();
   });
 
   // ========================================
-  // TAILWIND CSS INTEGRATION
+  // BUILD TASKS
   // ========================================
 
-  /**
-   * Build Tailwind CSS using the CLI
-   * Processes input.css and generates output.css with all utilities
-   */
-  const buildTailwind = () => {
+  // Unified command runner to reduce duplicated execSync code
+  const run = (startLabel, command) => {
     try {
-      console.log('🎨 Building Tailwind CSS...');
-      execSync('bunx @tailwindcss/cli -i ./src/css/input.css -o ./src/css/output.css', {
-        stdio: 'inherit',
-        cwd: process.cwd()
-      });
-      console.log('✅ Tailwind CSS built successfully');
+      console.log(startLabel);
+      execSync(command, { stdio: 'inherit', cwd: process.cwd() });
+      console.log('✅ Done');
     } catch (error) {
-      console.error('❌ Tailwind CSS build failed:', error.message);
+      console.error('❌ Failed:', error.message);
     }
   };
 
-  /**
-   * Build pagefind indices using the CLI
-   */
-  const buildPagefind = () => {
-    try {
-      console.log('🔍 Building Pagefind indices...');
-      execSync('bunx pagefind --site dist', {
-        stdio: 'inherit',
-        cwd: process.cwd()
-      });
-      console.log('✅ Pagefind indices built successfully');
-    } catch (error) {
-      console.error('❌ Pagefind build failed:', error.message);
-    }
-  }
+  /** Build Tailwind CSS using the CLI */
+  const buildTailwind = () => run('🎨 Building Tailwind CSS...', 'bunx @tailwindcss/cli -i ./src/css/input.css -o ./src/css/output.css');
+
+  /** Build Pagefind indices using the CLI */
+  const buildPagefind = () => run('🔍 Building Pagefind indices...', 'bunx pagefind --site dist');
+
+  // BUILD HOOKS & WATCHERS
+  // ========================================
 
   // Build CSS before Eleventy starts
   eleventyConfig.on('eleventy.before', buildTailwind);
@@ -181,14 +168,54 @@ export default function (eleventyConfig) {
   eleventyConfig.on('eleventy.after', buildPagefind);
 
   // Watch template files and CSS for changes
-  eleventyConfig.addWatchTarget("src/**/*.{njk,webc,md,html}");
+  eleventyConfig.addWatchTarget("src/**/*.{njk,webc,md,html,typ}");
   eleventyConfig.addWatchTarget("src/css/input.css");
 
   // Rebuild CSS when watched files change
   eleventyConfig.on('eleventy.beforeWatch', buildTailwind);
 
   // ========================================
-  // FILE COPYING
+  // OUTPUT TRANSFORMS
+  // ========================================
+
+  // ========================================
+  // HTML MINIFICATION
+  // ========================================
+
+  /**
+   * Minify final HTML output using html-minifier-terser
+   * Runs for all generated .html files
+   */
+  eleventyConfig.addTransform('htmlmin', async (content, outputPath) => {
+    if (outputPath && outputPath.endsWith('.html')) {
+      try {
+        const beforeLen = content.length;
+        const result = await htmlMinify(content, {
+          collapseWhitespace: true,
+          removeComments: true,
+          minifyCSS: true,
+          minifyJS: true,
+          useShortDoctype: true,
+          keepClosingSlash: true,
+          removeRedundantAttributes: true,
+          removeEmptyAttributes: true
+        });
+  const afterLen = result.length;
+  const saved = Math.max(0, beforeLen - afterLen);
+  const savedKiB = (saved / 1024).toFixed(2);
+  const pct = beforeLen ? ((saved / beforeLen) * 100).toFixed(1) : '0.0';
+  console.log(`✅ HTML minified: -${savedKiB} KiB (${pct}%) ${outputPath}`);
+        return result;
+      } catch (error) {
+        console.error(`❌ HTML minification failed for ${outputPath}:`, error.message);
+        return content; // Fallback: return unminified content
+      }
+    }
+    return content;
+  });
+
+  // ========================================
+  // ASSETS PASS-THROUGH
   // ========================================
 
   // Copy compiled CSS to output directory
