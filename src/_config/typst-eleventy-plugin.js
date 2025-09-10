@@ -66,18 +66,10 @@ export default function typstEleventyPlugin(eleventyConfig, options = {}) {
     getData: async function (inputPath) {
       let fm = await getFrontFormatter(compiler, inputPath);
 
-      const created = fm?.created ? new Date(fm.created) : undefined;
-      const license = typeof fm?.license === 'string' ? fm.license : undefined;
+      const fmAll = (fm && typeof fm === 'object') ? fm : {};
       return {
-        created,
-        // Expose license directly so layouts/components can read it
-        license,
-        eleventyComputed: {
-          // Only apply a layout if explicitly provided in front matter
-          layout: () => (fm && fm.layout ? fm.layout : undefined),
-          title: (data) => data.title || fm?.title || data.page?.fileSlug,
-          description: (data) => data.description || fm?.description
-        }
+        // Expose everything from Typst front-formatter at top-level
+        ...fmAll,
       };
     },
     compile: function (contents, inputPath) {
