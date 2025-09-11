@@ -48,6 +48,7 @@ jobs:
 
       - name: Build site
         run: |
+          nix-shell --run "bun run typst:link"
           nix-shell --run "bun run build"
 
       - name: Setup Pages

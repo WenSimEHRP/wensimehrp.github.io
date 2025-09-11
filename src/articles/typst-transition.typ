@@ -1,3 +1,4 @@
+#import "@local/wslib:0.1.0": *
 #metadata((
   layout: "layout.webc",
   title: "Transitioning to Typst",
@@ -6,22 +7,6 @@
   tags: ("Typst", "tools", "typesetting"),
   author: "Jeremy Gao",
 )) <frontmatter>
-
-#let fn-state = state("fn", (1, ()))
-#let footnote(c) = context {
-  let n = fn-state.get().at(0)
-  let href = "#fn" + str(n)
-  let id = "fnref" + str(n)
-  html.elem(
-    "sup",
-    attrs: (class: "footnotes-ref"),
-    html.elem("a", attrs: (href: href, id: id), [\[#n\]]),
-  )
-  fn-state.update(it => {
-    let (id, pc) = it
-    (id + 1, pc + (c,))
-  })
-}
 
 I've been using typst for a while, even using it to generate my blog site (as you can see).
 It is a great tool, with a typesetting quality that rivals LaTeX -- I cannot say
@@ -41,9 +26,9 @@ supports exporting HTML, as well as rendering parts of the documents in SVG (via
 Exporting to HTML is only a experimental feature, but it is somewhat mature now for
 productive use.
 #footnote[From the *official* Typst documentation: _Typst's HTML export is currently
-under active development. The feature is still very incomplete and only available
-for experimentation behind a feature flag. Do not use this feature for production
-use cases._] People like Camiyori#footnote[AKA "Myriad-Dreamin"] and OverflowCat
+    under active development. The feature is still very incomplete and only available
+    for experimentation behind a feature flag. Do not use this feature for production
+    use cases._] People like Camiyori#footnote[AKA "Myriad-Dreamin"] and OverflowCat
 already created exciting services such as typst.ts, and astro-typst. Uwni's also
 created their own blog with typst using their own extension. In fact, I was inspired
 by Uwni's blog, and I used the same eleventy build system they used in their blog.
@@ -151,31 +136,13 @@ function as I don't really need PDFs for now.#footnote[
 
 I have not tried adding images or formulas yet,#footnote[
   Here is a quick and simple test using `html.frame`:
-  #html.frame($ integral x^3 dot ln x dif x $)
+  #frame($ integral x^3 dot ln x dif x $)
   Nevertheless, I still need to work on it to make it display properly under dark
   mode.
 ] and it would be hard to add them using Typst's current html export features. Yet,
 as a normal user of Typst, I would definitely keep in track of its changes. While
 our honourable crew work on Typst, especially the HTML export feature, I would work
-on this blog, and hopefully write some more articles about Typst and remove those "WIP"
-labels.
+on this blog, and hopefully write some more articles about Typst and remove those
+"WIP" labels.
 
-#context {
-  let footnotes = fn-state.final().at(1)
-  if footnotes.len() == 0 {
-    return
-  }
-  html.elem("hr", attrs: (class: "footnotes-sep"))
-  html.elem(
-    "section",
-    attrs: (class: "footnotes"),
-    html.elem("ol", attrs: (class: "footnotes-list"))[
-      #for (idx, fn) in footnotes.enumerate() {
-        html.elem("li", attrs: (id: "fn" + str(idx + 1), class: "footnote-item"))[
-          #let href = "#fnref" + str(idx + 1)
-          #fn #html.elem("a", attrs: (href: href, class: "footnote-backref"))[↩︎]
-        ]
-      }
-    ],
-  )
-}
+#html-display-footnote

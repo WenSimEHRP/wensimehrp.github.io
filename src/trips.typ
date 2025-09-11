@@ -1,4 +1,5 @@
 #import "@preview/oxifmt:1.0.0": strfmt
+#import "@local/wslib:0.1.0": *
 #metadata((
   layout: "layout-without-toc.webc",
   title: "Travel Log",
@@ -50,11 +51,16 @@
     .flatten()
     .dedup()
     .len(),
-  "Money Spent": strfmt("CA${:.2}", trips.map(it => {
-    if "fare" in it and type(it.fare) == str {
-      float(it.fare.replace("CA$", ""))
-    }
-  }).sum())
+  "Money Spent": strfmt(
+    "CA${:.2}",
+    trips
+      .map(it => {
+        if "fare" in it and type(it.fare) == str {
+          float(it.fare.replace("CA$", ""))
+        }
+      })
+      .sum(),
+  ),
 )
 
 #html.elem("div", attrs: (class: "grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mt-6"))[
@@ -87,12 +93,7 @@
       }
     }
     #if agency-info != none {
-      html.elem("a", attrs: (
-        target: "_blank",
-        href: agency-info.site,
-        title: trip.agency,
-        rel: "noopener noreferrer",
-      ))[
+      elink(agency-info.site, title: trip.agency)[
         #html.elem("img", attrs: (
           src: agency-info.image,
           alt: trip.agency,
@@ -138,13 +139,7 @@
       .map(it => html.elem("td", attrs: (
         class: td,
       ))[
-        #html.elem("a", attrs: (
-          class: "no-underline truncate block",
-          href: "https://www.google.com/maps/search/" + it,
-          target: "_blank",
-          rel: "noopener noreferrer",
-          title: it,
-        ))[#it]
+        #elink("https://www.google.com/maps/search/" + it, title: it, class: "no-underline")[#it]
       ])
       .join()
   )

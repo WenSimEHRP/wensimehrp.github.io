@@ -5,7 +5,9 @@
   "private": true,
   "scripts": {
     "build": "eleventy",
-    "dev": "eleventy --serve"
+    "dev": "eleventy --serve",
+    "typst:link": "mkdir -p ~/.local/share/typst/packages/local/wslib && ln -sfn \"$PWD/wslib\" ~/.local/share/typst/packages/local/wslib/0.1.0",
+    "typst:unlink": "rm -f ~/.local/share/typst/packages/local/wslib/0.1.0"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.1.2",
