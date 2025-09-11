@@ -21,7 +21,6 @@
     "@11ty/eleventy-plugin-webc": "^0.11.2",
     "@fontsource-variable/merriweather-sans": "^5.2.6",
     "@fortawesome/fontawesome-free": "^7.0.0",
-    "@iarna/toml": "^2.2.5",
     "@myriaddreamin/typst-ts-node-compiler": "^0.6.1-rc3",
     "@myriaddreamin/typst.ts": "^0.6.1-rc3",
     "html-minifier-terser": "^7.2.0",

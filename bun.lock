@@ -7,7 +7,6 @@
         "@11ty/eleventy-plugin-webc": "^0.11.2",
         "@fontsource-variable/merriweather-sans": "^5.2.6",
         "@fortawesome/fontawesome-free": "^7.0.0",
-        "@iarna/toml": "^2.2.5",
         "@myriaddreamin/typst-ts-node-compiler": "^0.6.1-rc3",
         "@myriaddreamin/typst.ts": "^0.6.1-rc3",
         "html-minifier-terser": "^7.2.0",
@@ -55,8 +54,6 @@
     "@fontsource-variable/merriweather-sans": ["@fontsource-variable/merriweather-sans@5.2.6", "", {}, "sha512-m1PqGAd/d7z55ZxnhoRbJD1DQUumP356CW2q3lB6AWMtrotVBIT8TJAFTiSllA9Y1qCSqUN4Mu4bHdqK9xM+Uw=="],
 
     "@fortawesome/fontawesome-free": ["@fortawesome/fontawesome-free@7.0.1", "", {}, "sha512-RLmb9U6H2rJDnGxEqXxzy7ANPrQz7WK2/eTjdZqyU9uRU5W+FkAec9uU5gTYzFBH7aoXIw2WTJSCJR4KPlReQw=="],
-
-    "@iarna/toml": ["@iarna/toml@2.2.5", "", {}, "sha512-trnsAYxU3xnS1gPHPyU961coFyLkh4gAD/0zQ5mymY4yOZ+CYvsPqUbOFSw0aDM4y0tV7tiFxL/1XfXPNC6IPg=="],
 
     "@isaacs/fs-minipass": ["@isaacs/fs-minipass@4.0.1", "", { "dependencies": { "minipass": "^7.0.4" } }, "sha512-wgm9Ehl2jpeqP3zw/7mo3kRHFp5MEDhqAdwy1fTGkHAwnkGOVsgpvQhL8B5n1qlb01jV3n/bI0ZfZp5lWA1k4w=="],
 

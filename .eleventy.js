@@ -16,7 +16,6 @@ import markdownItFootnote from 'markdown-it-footnote';
 import markdownItAnchor from 'markdown-it-anchor';
 import markdownItAttrs from 'markdown-it-attrs';
 import markdownItDeflist from 'markdown-it-deflist';
-import TOML from '@iarna/toml';
 import pluginWebc from '@11ty/eleventy-plugin-webc';
 import { minify as htmlMinify } from 'html-minifier-terser';
 import typstEleventyPlugin from './src/_config/typst-eleventy-plugin.js';
@@ -50,14 +49,7 @@ export default function (eleventyConfig) {
   // Ensure Eleventy treats .typ as a template format
   eleventyConfig.addTemplateFormats("typ");
 
-  // ========================================
-  // DATA FILE FORMATS
-  // ========================================
-
-  /**
-   * Add TOML data file support
-   */
-  eleventyConfig.addDataExtension("toml", contents => TOML.parse(contents));
+  // (TOML data extension removed per user request)
 
   // ========================================
   // MARKDOWN CONFIGURATION (GFM)
