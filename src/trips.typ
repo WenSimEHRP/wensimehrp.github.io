@@ -2,7 +2,7 @@
 #import "@local/wslib:0.1.0": *
 #metadata((
   layout: "layout-without-toc.webc",
-  title: "Travel Log",
+  title: "Transit Log",
   description: "A record of my transportation and travel history.",
   created: "2025-08-31",
   license: "All rights reserved",

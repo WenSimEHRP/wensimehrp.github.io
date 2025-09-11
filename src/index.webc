@@ -9,11 +9,8 @@ I think you would find interesting stuff here.
 
 <div
     class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 [&_a]:text-sm [&_a]:font-semibold [&_a]:no-underline [&_a]:min-w-full [&_a]:text-center">
-    <a href="/trips" class="card">
-        <i class="fa-solid fa-route mr-1"></i>
-        Travel Log
-    </a>
-    <a href="" class="card text-gray-400"><i class="fa-solid fa-lock mr-1"></i>Locked</a>
+    <a href="/trips" class="card"><i class="fa-solid fa-route mr-1"></i>Transit Log</a>
+    <a href="/connections" class="card"><i class="fa-solid fa-user-group mr-1"></i>Friends</a>
     <a href="" class="card text-gray-400"><i class="fa-solid fa-lock mr-1"></i>Locked</a>
     <a href="" class="card text-gray-400"><i class="fa-solid fa-lock mr-1"></i>Locked</a>
 </div>
