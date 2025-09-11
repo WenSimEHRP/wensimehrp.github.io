@@ -10,12 +10,12 @@ I think you would find interesting stuff here.
 <div
     class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 [&_a]:text-sm [&_a]:font-semibold [&_a]:no-underline [&_a]:min-w-full [&_a]:text-center">
     <a href="/trips" class="card">
-        <i class="fa-solid fa-route mr-2"></i>
+        <i class="fa-solid fa-route mr-1"></i>
         Travel Log
     </a>
-    <a href="" class="card text-gray-400">???</a>
-    <a href="" class="card text-gray-400">???</a>
-    <a href="" class="card text-gray-400">???</a>
+    <a href="" class="card text-gray-400"><i class="fa-solid fa-lock mr-1"></i>Locked</a>
+    <a href="" class="card text-gray-400"><i class="fa-solid fa-lock mr-1"></i>Locked</a>
+    <a href="" class="card text-gray-400"><i class="fa-solid fa-lock mr-1"></i>Locked</a>
 </div>
 
 <h2>Recent Articles & Updates</h2>
@@ -29,8 +29,7 @@ I think you would find interesting stuff here.
             <i class="fa-solid fa-calendar"></i>
             <span @text="formatDate(post.data.created)" class="mr-2"></span>
             <span webc:if="post.data.wip" class="mr-2">
-                <span class="text-sky-600"><i class="fa-solid fa-circle-info"></i></span>
-                <i>WIP</i>
+                <span class="text-sky-600"><i class="fa-solid fa-circle-info mr-1"></i></span><i>WIP</i>
             </span>
             <span webc:for="tag of post.data.tags"
                 class="text-xs mr-1 py-0.5 px-1 bg-gray-200 dark:bg-gray-600 rounded-sm" @text="tag"></span>
