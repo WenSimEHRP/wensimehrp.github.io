@@ -78,3 +78,12 @@
     block(c)
   }
 }
+
+#let fa(icon) = context {
+  if target() == "html" {
+    if icon.starts-with("fa-") {
+      icon = icon.slice(3)
+    }
+    html.elem("i", attrs: (class: "fa-solid fa-" + icon))
+  }
+}
