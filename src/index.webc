@@ -5,12 +5,18 @@ created: 2025-08-29
 description: "A collection of thoughts, tutorials, and explorations in technology."
 ---
 
-<a href="/trips" class="card no-underline max-w-fit">
-    <span class="text-sm font-semibold">
+I think you would find interesting stuff here.
+
+<div
+    class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 [&_a]:text-sm [&_a]:font-semibold [&_a]:no-underline [&_a]:min-w-full [&_a]:text-center">
+    <a href="/trips" class="card">
         <i class="fa-solid fa-route mr-2"></i>
-        View Travel Log
-    </span>
-</a>
+        Travel Log
+    </a>
+    <a href="" class="card text-gray-400">???</a>
+    <a href="" class="card text-gray-400">???</a>
+    <a href="" class="card text-gray-400">???</a>
+</div>
 
 <h2>Recent Articles & Updates</h2>
 

@@ -22,10 +22,10 @@
 
   <!-- Main Content -->
   <main class="flex-1 pb-20">
-    <div class="max-w-7xl mx-auto px-6 py-12 flex gap-8">
+    <div class="max-w-6xl mx-auto px-6 py-12 flex gap-8">
       <!-- Article Content -->
       <article class="flex-1 max-w-full">
-        <div class="prose prose-gray dark:prose-invert max-w-none [&_p]:text-justify [&_p]:hyphens-auto">
+        <div class="prose prose-gray dark:prose-invert max-w-none">
           <h1 @text="title"></h1>
           <page-metadata :created="created" :author="author" :page="page" :metadata="metadata"></page-metadata>
           <p webc:if="description"><i @html="description"></i></p>
@@ -43,7 +43,7 @@
               Please contact the author for permissions regarding reusing.
             </span>
           </div>
-          <template @raw="content" webc:nokeep></template>
+          <div class="[&_p]:text-justify [&_p]:hyphens-auto"><template @raw="content" webc:nokeep></template></div>
         </div>
       </article>
       <toc></toc>

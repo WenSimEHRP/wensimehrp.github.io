@@ -5,7 +5,7 @@
   description: "A record of my transportation and travel history.",
   created: "2025-08-31",
   license: "All rights reserved",
-)) <front-formatter>
+)) <frontmatter>
 
 #html.elem("div", attrs: (class: "text-sm text-gray-600 dark:text-gray-400 mb-4 leading-tight"))[
   - Click on station names to view them on Google Maps

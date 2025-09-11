@@ -23,10 +23,10 @@ async function htmlRender(compiler, inputArgs, inputPath) {
   return output.result.body();
 }
 
-// Query front-formatter tag from Typst document, e.g. define in Typst:
+// Query frontmatter tag from Typst document, e.g. define in Typst:
 // To ensure `#html` is available during query, we first compile with HTML target
 // and then run the query against the compiled document.
-async function getFrontFormatter(compiler, inputPath) {
+async function getFrontmatter(compiler, inputPath) {
   try {
     const compiled = compiler.compileHtml({
       mainFilePath: inputPath,
@@ -36,14 +36,14 @@ async function getFrontFormatter(compiler, inputPath) {
     compiled.printDiagnostics();
     const doc = compiled.result;
     if (!doc) return null;
-    const result = compiler.query(doc, { selector: '<front-formatter>' });
+  const result = compiler.query(doc, { selector: '<frontmatter>' });
     // Optional debug log
     if (isTypstDebug()) {
-      console.log('[typst] Front-formatter query ok:', Array.isArray(result) ? result.length : 0);
+  console.log('[typst] Frontmatter query ok:', Array.isArray(result) ? result.length : 0);
     }
     if (result && result.length > 0) return result[0].value;
   } catch (e) {
-    console.warn('Typst front-formatter query failed:', e);
+  console.warn('Typst frontmatter query failed:', e);
   }
   return null;
 }
@@ -62,13 +62,13 @@ export default function typstEleventyPlugin(eleventyConfig, options = {}) {
 
   // Register the .typ extension
   eleventyConfig.addExtension("typ", {
-  // Provide layout/title from Typst <front-formatter> tag (no default layout)
+  // Provide layout/title from Typst <frontmatter> tag (no default layout)
     getData: async function (inputPath) {
-      let fm = await getFrontFormatter(compiler, inputPath);
+      let fm = await getFrontmatter(compiler, inputPath);
 
       const fmAll = (fm && typeof fm === 'object') ? fm : {};
       return {
-        // Expose everything from Typst front-formatter at top-level
+  // Expose everything from Typst frontmatter at top-level
         ...fmAll,
       };
     },
