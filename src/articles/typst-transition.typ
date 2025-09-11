@@ -37,7 +37,7 @@ course.#footnote[
 ]
 
 So the decision is to rewrite (at least some parts of) this site using Typst. Typst
-supports exporting HTML, as well as rendering parts of the documents in SVG (via `html.elem`).
+supports exporting HTML, as well as rendering parts of the documents in SVG (via `html.frame`).
 Exporting to HTML is only a experimental feature, but it is somewhat mature now for
 productive use.
 #footnote[From the *official* Typst documentation: _Typst's HTML export is currently
