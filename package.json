@@ -1,6 +1,5 @@
 {
   "name": "blog",
-  "module": "index.ts",
   "type": "module",
   "private": true,
   "scripts": {
