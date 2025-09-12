@@ -8,6 +8,7 @@
   author: "Jeremy Gao",
   wip: true,
 )) <frontmatter>
+#show: wstemplate
 
 I've been writing NewGRFs for a while. My first GRF released on #elink("https://bananas.openttd.org")[BaNaNaS]
 was a China Set GRF -- despite the fact that I don't really like the project's artistic
@@ -134,5 +135,3 @@ Other methods include:
 
 Using GCC comes with another side affect, which I consider as a benefit. GCC supports
 expanding C-style macros#footnote[ref: `Q_OBJECT`], and macros help reducing boilerplate.
-
-#html-display-footnote

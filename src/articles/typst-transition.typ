@@ -7,6 +7,7 @@
   tags: ("Typst", "tools", "typesetting"),
   author: "Jeremy Gao",
 )) <frontmatter>
+#show: wstemplate
 
 I've been using typst for a while, even using it to generate my blog site (as you can see).
 It is a great tool, with a typesetting quality that rivals LaTeX -- I cannot say
@@ -144,5 +145,3 @@ as a normal user of Typst, I would definitely keep in track of its changes. Whil
 our honourable crew work on Typst, especially the HTML export feature, I would work
 on this blog, and hopefully write some more articles about Typst and remove those
 "WIP" labels.
-
-#html-display-footnote
