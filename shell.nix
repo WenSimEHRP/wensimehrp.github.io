@@ -8,5 +8,8 @@ mkShell rec {
   nativeBuildInputs = [
     bun
     typst
+    # font section
+    merriweather
+    merriweather-sans
   ];
 }
