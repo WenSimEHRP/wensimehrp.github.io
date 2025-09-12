@@ -1,15 +1,25 @@
+/// Font Awesome icon
+///
+/// - icon (string): The Font Awesome icon name, with or without the "fa-" prefix.
+/// ->
+#let fa(icon) = context {
+  if target() == "html" {
+    html.elem("i", attrs: (class: "fa-solid " + icon))
+  }
+}
+
 /// External link
 ///
 /// - url (string): The URL to link to.
 /// - c (any): The content to display for the link.
 /// - ..args (dict): Additional attributes to add to the `<a>` element.
 /// -> any
-#let elink(url, c, ..args) = context {
+#let elink(url, c, show-icon: true, ..args) = context {
   if target() == "html" {
     html.elem(
       "a",
       attrs: (href: url, target: "_blank", rel: "noopener noreferrer", title: url, ..args.named()),
-      c,
+      [#c #if show-icon { fa("fa-arrow-up-right-from-square") }],
     )
   } else {
     link(url, c)
@@ -76,14 +86,5 @@
     html.frame(c)
   } else {
     block(c)
-  }
-}
-
-#let fa(icon) = context {
-  if target() == "html" {
-    if icon.starts-with("fa-") {
-      icon = icon.slice(3)
-    }
-    html.elem("i", attrs: (class: "fa-solid fa-" + icon))
   }
 }

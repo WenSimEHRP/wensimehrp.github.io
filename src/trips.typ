@@ -1,4 +1,5 @@
 #import "@preview/oxifmt:1.0.0": strfmt
+#import "@local/wslib:0.1.0"
 #import "@local/wslib:0.1.0": *
 #metadata((
   layout: "layout-without-toc.webc",
@@ -8,13 +9,16 @@
   license: "All rights reserved",
 )) <frontmatter>
 
+// we don't use elinks with icons here
+#let elink = elink.with(show-icon: false)
+
 #html.elem("div", attrs: (class: "text-sm text-gray-600 dark:text-gray-400 mb-4 leading-tight"))[
   - Click on station names to view them on Google Maps
   - Travel logs start from 2025. Some earlier trips are included, but may not be
     complete.
   - Click on the agency logo to visit their homepage.
   - Agency logos are fetched from various sources (mainly from
-    #link("https://commons.wikimedia.org/wiki/Main_Page")[Wikimedia Commons]).
+    #wslib.elink("https://commons.wikimedia.org/wiki/Main_Page")[Wikimedia Commons]).
     They may not always be accurate or up-to-date.
   - Through services are counted as separate companies.
   - Different directions of the same nominal bus route are counted as separate routes.

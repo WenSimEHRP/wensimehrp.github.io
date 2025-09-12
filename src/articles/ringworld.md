@@ -15,12 +15,19 @@ In _some year_, before RimWorld's released its initial Chinese translations, a g
 of translator from 3DMgames translated RimWorld into Simplified Chinese. In their
 translation, they made a mistake, and translated the title of the game -- the most
 important piece of text -- to "RingWorld", and started a chain of unbelievable misunderstandings
-that still deeply affects the game community until today.
+that still deeply affect the game community until today.
+
+## Being Affected
 
 The translators from 3DMgames shaped the initial Chinese player community. Their
 mistake was never entirely corrected. Even I almost thought that a _rim_ is a _ring_.
 Their legacy can still be seen on online video sites like bilibili, general discussion
 sites like Baidu Tieba, and countless discussion groups on QQ, the Line of China.
+
+Like many other players, I accepted the "RingWorld" translation -- almost because
+at the time I started playing I didn't see any other viable title translations.
+A game may stay alive for ten years, some maybe thirty, yet most of them will be
+forgotten very soon. RimWorld is no exception.
 
 ## Sticking To the Default Language
 
@@ -68,3 +75,7 @@ Many developers may heard of Crowdin, and just like its name, its a crowdsourced
 site that helps translating applications.
 
 ## Why Concat?
+
+There are plenty of translation frameworks out their, and Tynan chose the worst one --
+manually injecting definitions and doing concatenation at source code level. Each
+piece of
