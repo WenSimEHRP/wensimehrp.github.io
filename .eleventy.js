@@ -160,8 +160,9 @@ export default function (eleventyConfig) {
   eleventyConfig.on('eleventy.after', buildPagefind);
 
   // Watch template files and CSS for changes
-  eleventyConfig.addWatchTarget("src/**/*.{njk,webc,md,html,typ}");
-  eleventyConfig.addWatchTarget("src/css/input.css");
+  eleventyConfig.addWatchTarget("src");
+  // Watch the Typst library for changes
+  eleventyConfig.addWatchTarget("wslib");
 
   // Rebuild CSS when watched files change
   eleventyConfig.on('eleventy.beforeWatch', buildTailwind);
