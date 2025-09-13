@@ -1,3 +1,5 @@
+#import "deps.typ": *
+
 /// Font Awesome icon
 ///
 /// - icon (string): The Font Awesome icon name, with or without the "fa-" prefix.
@@ -81,10 +83,31 @@
   )
 }
 
-#let frame(c) = context {
+#let frame(c, alignment: center) = context {
   if target() == "html" {
-    html.frame(c)
+    if alignment == center {
+      html.elem(
+        "div",
+        attrs: (class: "w-full overflow-x-auto"),
+        html.elem(
+          "div",
+          attrs: (class: "w-fit mx-auto"),
+          html.frame(c),
+        ),
+      )
+    } else { html.frame(c) }
   } else {
-    block(c)
+    align(alignment, block(c))
   }
+}
+
+#let figure(c, with-frame: true, ..args) = context {
+  if target() == "html" {
+    let oc = if with-frame {
+      frame(c)
+    } else { c }
+    std.figure(oc, ..args)
+    return
+  }
+  std.figure(c, ..args)
 }

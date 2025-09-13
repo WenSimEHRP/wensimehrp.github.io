@@ -1,5 +1,6 @@
 #import "func.typ": *
-#import "@preview/typewind:0.1.0": *
+#import "deps.typ": *
+
 #let with-line(it) = {
   block(it, below: 0cm)
   block(above: .2cm, {
