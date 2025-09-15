@@ -3,7 +3,7 @@
   layout: "layout.webc",
   title: "Hi, Post Secondary",
   description: "Goodbye, high school.",
-  created: "2008-08-09",
+  created: "2008-11-07",
   tags: ("???",),
   author: "WenSim",
 )) <frontmatter>
