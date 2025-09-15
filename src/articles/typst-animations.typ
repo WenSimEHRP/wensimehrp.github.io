@@ -1,8 +1,8 @@
 #import "@local/wslib:0.1.0": *
 #metadata((
   layout: "layout.webc",
-  title: "Animation with Typst",
-  description: "A.K.A. Typst with FFmpeg.",
+  title: "Animations with Typst",
+  description: "A.K.A. Typst with FFmpeg, or Tanim.",
   created: "2025-09-14",
   tags: ("Typst", "tools", "FFmpeg"),
   author: "Jeremy Gao",
