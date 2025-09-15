@@ -2,7 +2,8 @@
 #import "@local/wslib:0.1.0"
 #import "@local/wslib:0.1.0": *
 #metadata((
-  layout: "layout-without-toc.webc",
+  layout: "layout.webc",
+  toc: "false",
   title: "Transit Log",
   description: "A record of my transportation and travel history.",
   created: "2025-08-31",

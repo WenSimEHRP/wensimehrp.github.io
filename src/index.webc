@@ -3,6 +3,7 @@ layout: layout.webc
 title: Blog Home
 created: 2025-08-29
 description: "A collection of thoughts, tutorials, and explorations in technology."
+comments: false
 ---
 
 I think you would find interesting stuff here.
