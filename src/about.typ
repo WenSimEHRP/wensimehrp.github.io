@@ -28,12 +28,15 @@ nor to be professional. He's also terrible at math.
   calculus.
 ]
 
+And my English sucks, like, for real.
+
 = Technologies
 
 This site uses these technologies:
 
 #table(
   columns: 2,
+  table.header[Technology][Usage],
   [Eleventy], [static site generation],
   [Tailwind CSS], [styling],
   [Typst], [typesetting articles],
