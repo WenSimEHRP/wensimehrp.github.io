@@ -11,11 +11,6 @@
  */
 
 import { execSync } from 'child_process';
-import markdownIt from 'markdown-it';
-import markdownItFootnote from 'markdown-it-footnote';
-import markdownItAnchor from 'markdown-it-anchor';
-import markdownItAttrs from 'markdown-it-attrs';
-import markdownItDeflist from 'markdown-it-deflist';
 import pluginWebc from '@11ty/eleventy-plugin-webc';
 import { minify as htmlMinify } from 'html-minifier-terser';
 import typstEleventyPlugin from './src/_config/typst-eleventy-plugin.js';
@@ -52,35 +47,6 @@ export default function (eleventyConfig) {
   // (TOML data extension removed per user request)
 
   // ========================================
-  // MARKDOWN CONFIGURATION (GFM)
-  // ========================================
-
-  /**
-   * Configure markdown-it with GitHub Flavored Markdown support
-   */
-  const markdownItOptions = {
-    html: true,         // Enable HTML tags in source
-    breaks: false,      // Convert '\n' in paragraphs into <br>
-    linkify: true,      // Autoconvert URL-like text to links
-    typographer: true   // Enable some language-neutral replacement + quotes beautification
-  };
-
-  const markdownLib = markdownIt(markdownItOptions)
-    .use(markdownItFootnote)    // Footnotes support [^1]
-    .use(markdownItAnchor, {    // Header anchors
-      permalink: markdownItAnchor.permalink.linkInsideHeader({
-        symbol: '<i class="fa-solid fa-link opacity-50 hover:opacity-100 transition-opacity" aria-hidden="true"></i>',
-        placement: 'before',
-        class: 'header-anchor'
-      })
-    })
-    .use(markdownItAttrs)       // Add attributes to elements {.class #id}
-    .use(markdownItDeflist);    // Definition lists
-
-  // Set the markdown library
-  eleventyConfig.setLibrary("md", markdownLib);
-
-  // ========================================
   // COLLECTIONS
   // ========================================
 
@@ -88,7 +54,7 @@ export default function (eleventyConfig) {
    * Create a collection of articles from the articles directory
    */
   eleventyConfig.addCollection("articles", function (collectionApi) {
-    return collectionApi.getFilteredByGlob("src/articles/*.{md,typ}");
+    return collectionApi.getFilteredByGlob("src/articles/*.typ");
   });
 
   // ========================================
