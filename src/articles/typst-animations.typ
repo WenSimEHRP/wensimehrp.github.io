@@ -12,12 +12,12 @@
 Typst is a great typesetting tool. It's also great as a drawing tool. Reviewing its
 history of #{ datetime.today() - datetime(year: 2019, month: 12, day: 1) }.days() days,
 it has evolved from a simple typesetting tool to a powerful tool that can do way
-more then typesetting documents alone. The community's developed Presentation and
+more than typesetting documents alone. The community has developed presentation and
 poster templates, people are using it to draw #elink("https://github.com/wensimehrp/paiagram")[train timetable diagrams]
 as well as complex mathematical graphs. Despite all these, one thing nobody has done
 (or at least I haven't seen anyone doing) is using Typst to create animations.
 
-An animation is a sequence of images. Typst can generate images from typst code,
+An animation is a sequence of images. Typst can generate images from Typst code,
 so in theory, it is possible to generate an animation using Typst. A simple way to
 do this is to first generate all frames as images using a loop or something else
 that serves the same purpose
@@ -35,15 +35,15 @@ ffmpeg frame_*.png output.mp4
 ```
 
 But this is essentially the same as rendering one frame, and stretching the interval
-of that frame 100 times -- definitely not we wanted.
+of that frame 100 times -- definitely not what we wanted.
 
 = Typst Inputs
 
 Typst's `input` feature is _bad_. It allows the file to take an input value, and take
-different actions based on that value -- non deterministic!#footnote[
+different actions based on that value -- non-deterministic!#footnote[
   Use the same words on `datetime.today()`.
 ] However, in our case,
-it is the only way to pass the current frame index into the typst file.
+it is the only way to pass the current frame index into the Typst file.
 
 ```
 $> typst c frame.typ --input t=42
@@ -61,10 +61,10 @@ frames per second on my i9-13900HX machine. Can we do better? Of course we can.
 
 By default, before rendering the document, Typst would check system fonts and check
 what glyphs/codepoints are available. This process takes a significant amount of time
-to run on my i9-13900HX machine, and it is unreasonable to let typst do this for
+to run on my i9-13900HX machine, and it is unreasonable to let Typst do this for
 a 65536-frame animation. Luckily, there are two flags that can help:
 
-- `--ignore-system-fonts`: Don't preform the system font check
+- `--ignore-system-fonts`: Don't perform the system font check
 - `--font-path`: Specify a font path to load fonts from
 
 In my case, I just put the fonts that are required in the same working directory,
@@ -74,7 +74,7 @@ for rendering a single frame is huge:
 #figure(
   with-frame: false,
   caption: [
-    Performance comparison using `poop`. Here poop is using typst to compile an
+    Performance comparison using `poop`. Here poop is using Typst to compile an
     early version of the article you're reading now.
   ],
   ```
@@ -108,9 +108,9 @@ The Typst command part is now fairly fast, yet it's still possible to speed up t
 process by running multiple Typst commands in parallel.
 
 #elink("https://www.gnu.org/software/parallel/")[GNU Parallel] is the perfect tool
-for this job. It can take a list of items, and run a set of command for each item
+for this job. It can take a list of items, and run a set of commands for each item
 in parallel. This tool is written in Perl. That being said, it is good enough to
-spawn a lot of processes and organizing them.
+spawn a lot of processes and organize them.
 
 ```bash
 seq 0 100 | parallel typst c flash.typ --input t={} -f png {}.png
@@ -127,7 +127,7 @@ command to the second command's standard input. Both the standard input and outp
 take place in memory, and memory I/O is magnitudes faster than disk I/O.
 #footnote[
   It's also possible to create a ramdisk or a tmpfs for this purpose, but for our
-  scenario the pipe is sufficient enough. A tmpfs in this case is just an overkill.
+  scenario the pipe is sufficient. A tmpfs in this case is just an overkill.
 ]
 Take `ls -l | grep foo` as an example:
 
@@ -216,7 +216,7 @@ seq 0 $((END)) | parallel -k \
 Typst is already pretty fast at rendering documents, yet, on the one hand, the PNG
 format is costly to both encode and decode. Using a different format such as `rgb`,
 `bmp`, or `qoi` would accelerate the process even more. Yet Typst doesn't even support
-JPEG now, so I think that would take a while to happen.
+JPEG yet, so I think that would take a while to happen.
 
 Some may note that Typst also supports SVG output, and FFmpeg also supports SVG input.
 However, FFmpeg's SVG is based on disk files, and piping from Typst to FFmpeg would
@@ -225,20 +225,28 @@ in theory, yet I've tried and somehow it failed for me. If you managed to make i
 please let me know!
 
 On the other hand, even though we are running everything in parallel, Typst itself
-only run on the CPU. Making Typst GPU-accelerated would be a huge improvement, yet
+only runs on the CPU. Making Typst GPU-accelerated would be a huge improvement, yet
 it is not something that can be done easily.
 
 Lastly, it could be possible to get rid of `parallel` entirely -- Typst itself is
 multithreaded, just that it doesn't support outputting raster images to the standard
-output. If Typst supports this feature, we could just run the typst command once,
+output. If Typst supports this feature, we could just run the Typst command once,
 let Typst handle the multithreading part and organize the images, then pipe that
 to FFmpeg. This eliminates not just the overhead of `parallel`, but also the overhead
-of cold-booting Typst 60k times.
+of cold-booting Typst 60k times.#footnote[
+  Reviewing this part I realized that I missed a critical part in letting Typst handle
+  parallelism: Typst provides `state`, `counter`, and `query` for querying the state
+  of the current documentation. The query goes two ways in time -- time travelling.
+  It is definitely possible and valid for an earlier frame to query the state of a later
+  frame. This means that if any of those `foo-state.final()` code is involved, Typst
+  would have to first store all 65k frames in memory, then resolve all queries, then
+  pipe all frames out. The extra memory burden is definitely not what we want.
+]
 
 = This Does Not Work in Nushell!
 
 Well, it's a bit of an overexaggeration to say that it cannot work at all in Nushell.
-I am taking about the `par-each` command in Nushell, that takes a list of items and
+I am talking about the `par-each` command in Nushell, that takes a list of items and
 passes them into a closure, and runs the closures in parallel. The problem is not
 parallelism, neither the closure itself, but the fact that Nushell would collect
 the output of all closures first, then pipe them into the next command. In our case
@@ -253,7 +261,7 @@ run concurrently.
 
 = The Proper Engine That Actually Uses Typst
 
-Ok, I hereby admit that I've just created the most advanced frame-by-frame animation
+Okay, I hereby admit that I've just created the most advanced frame-by-frame animation
 engine *Tanim*!
 
 Jokes aside, what we've now discussed are only the elementary steps of building an
@@ -265,7 +273,7 @@ involves much more than simple frame-by-frame rendering. And this linear workflo
 simply composed using Typst and FFmpeg cannot be sufficient for a real animation engine.
 
 There is one engine, #elink("https://github.com/jkjkil4/JAnim")[JAnim], that actually
-uses Typst. It doesn't use typst to render each frame, but to envoke Typst at runtime
+uses Typst. It doesn't use Typst to render each frame, but to invoke Typst at runtime
 for elements (text, arbitrary shapes and graphs, and math formulas) that can be used
 by the engine.
 
@@ -274,11 +282,15 @@ by the engine.
 Here's a #elink("https://decodeunicode.org/")[Decode-Unicode] style
 #elink("https://www.bilibili.com/video/BV1Z3HozoEPi")[
   unicode character display video
-] I made using the command given above. It has exactly 65536 frames, one for each
-Unicode codepoint from U+0000 to U+FFFF. Some codepoints are not defined, some are
-not displayable, some are just in the private use area, so the video doesn't reflect
-the actual Unicode standard. Nevertheless, I think this would be a good starting
-point for anyone who wants to create animations using Typst. Enjoy!
+] #footnote[
+  I know that some people might have problems playing Bilibili videos, but let's
+  just keep that for now. I don't want to post it on YouTube yet.
+]I made using the command given above. It has a bit less than 65536 frames -- not exactly 65536,
+due to the fact that some Unicode codepoints in this range are invalid. Some codepoints
+are not defined, some are not displayable, some are just in the private use area,
+so the video doesn't reflect the actual Unicode standard. Nevertheless, I think this
+would be a good starting point for anyone who wants to create animations using Typst.
+Enjoy!
 
 #html.elem("iframe", attrs: (
   src: "//player.bilibili.com/player.html?isOutside=true&bvid=BV1Z3HozoEPi",
