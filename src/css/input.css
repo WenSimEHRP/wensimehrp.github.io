@@ -18,3 +18,13 @@ a:hover {
 .card {
   @apply bg-white dark:bg-gray-700 outline rounded-lg outline-gray-200 dark:outline-gray-700 justify-center shadow-sm px-6 py-4
 }
+
+pre {
+  @apply block whitespace-pre overflow-auto md:whitespace-pre-wrap md:break-words md:overflow-visible
+}
+
+/* CJK formatting */
+* {
+  text-autospace: normal;
+  text-spacing-trim: normal;
+}
