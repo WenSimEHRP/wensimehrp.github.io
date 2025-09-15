@@ -49,7 +49,7 @@ It looks like this:#footnote[
         pad(.1cm, train.name)
       },
     )
-    paiagram(
+    box(fill: white, inset: 1em, paiagram(
       ..data,
       stations-to-draw: data.stations.keys().slice(4),
       start-hour: 15,
@@ -57,7 +57,7 @@ It looks like this:#footnote[
       label-angle: 30deg,
       time-axis-scale: 3,
       position-axis-scale: .8,
-    )
+    ))
   },
 )
 
