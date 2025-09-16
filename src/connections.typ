@@ -36,7 +36,7 @@ Links are sorted by time of addition, with the most recent at the bottom.
 #html.elem(
   "div",
   attrs: (
-    class: "grid grid-cols-2 md:grid-cols-3 gap-4",
+    class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
   ),
   connections-data.map(to-card).join(),
 )
