@@ -8,8 +8,7 @@
 )) <frontmatter>
 
 // connections are sorted alphabetically by title.
-#let (example, ..connections-data) = toml("_data/connections.toml").connections
-#(connections-data = (example,) + connections-data.sorted(key: it => it.title))
+#let connections-data= toml("_data/connections.toml").connections
 
 #let to-card(data) = context {
   if target() != "html" {
@@ -30,7 +29,7 @@
   )
 }
 
-Links are sorted alphabetically.
+Links are sorted by time of addition, with the most recent at the bottom.
 
 = The Honour List
 
@@ -43,3 +42,5 @@ Links are sorted alphabetically.
 )
 
 = Adding an Entry
+
+Edit #elink("https://github.com/WenSimEHRP/wensimehrp.github.io/blob/main/src/_data/connections.toml")
