@@ -8,7 +8,7 @@
 )) <frontmatter>
 
 // connections are sorted alphabetically by title.
-#let connections-data= toml("_data/connections.toml").connections
+#let connections-data = toml("_data/connections.toml").connections
 
 #let to-card(data) = context {
   if target() != "html" {
@@ -20,7 +20,9 @@
     class: "card no-underline flex",
     html.elem(
       "article",
-      attrs: (class: "min-w-full [&>h3]:mt-2 [&>h3]:mb-1 text-left [&>p]:mb-3 [&>p]:leading-loose [&>p]:text-sm [&_code]:text-teal-700"),
+      attrs: (
+        class: "min-w-full [&>h3]:mt-2 [&>h3]:mb-1 text-left [&>p]:mb-3 [&>p]:leading-loose [&>p]:text-sm [&_code]:text-teal-700",
+      ),
     )[
       == #data.title
       #data.description\
@@ -33,13 +35,17 @@ Links are sorted by time of addition, with the most recent at the bottom.
 
 = The Honour List
 
-#html.elem(
-  "div",
-  attrs: (
-    class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
-  ),
-  connections-data.map(to-card).join(),
-)
+#context if target() == "html" {
+  html.elem(
+    "div",
+    attrs: (
+      class: "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4",
+    ),
+    connections-data.map(to-card).join(),
+  )
+} else {
+
+}
 
 = Adding an Entry
 
