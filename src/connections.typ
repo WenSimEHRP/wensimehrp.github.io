@@ -20,7 +20,7 @@
     class: "card no-underline flex",
     html.elem(
       "article",
-      attrs: (class: "min-w-full [&>h3]:mt-2 [&>h3]:mb-1 text-left [&>p]:mb-3 [&>p]:leading-loose [&_code]:text-teal-700"),
+      attrs: (class: "min-w-full [&>h3]:mt-2 [&>h3]:mb-1 text-left [&>p]:mb-3 [&>p]:leading-loose [&>p]:text-sm [&_code]:text-teal-700"),
     )[
       == #data.title
       #data.description\
