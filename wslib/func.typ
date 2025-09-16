@@ -20,10 +20,17 @@
   if target() == "html" {
     html.elem(
       "a",
-      attrs: (href: url, target: "_blank", rel: "noopener noreferrer", title: url, ..args.named()),
+      attrs: (
+        href: url,
+        target: "_blank",
+        rel: "noopener noreferrer",
+        title: url,
+        class: "wrap-anywhere",
+        ..args.named(),
+      ),
       [#{
           if args.pos().len() == 0 {
-            raw(url)
+            url
           } else {
             args.pos().join()
           }
