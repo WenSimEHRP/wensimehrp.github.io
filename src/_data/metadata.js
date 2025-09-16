@@ -17,9 +17,9 @@ function getCommitSha() {
 }
 
 export default {
-    title: "WSIM",
+    title: "The Gao Log",
     language: "en",
-    description: "WenSim's blog site",
+    description: "Go and Observe",
     startYear: startYear,
     endYear: endYear,
     copyrightYearRange: startYear === endYear ? startYear.toString() : `${startYear}-${endYear}`,

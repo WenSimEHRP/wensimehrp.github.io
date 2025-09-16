@@ -7,6 +7,21 @@
 )) <frontmatter>
 #show: wstemplate
 
+= About the Name
+
+I had several names in mind for this site, like "WenSim's Blog", "WSIM", and a lot
+more I won't even mention because they're too embarrassing. I eventually named it
+"The Gao Log". So,
+
+- Gao is my surname.
+- Go and observe.
+- Gather and optimize.
+- Lots of other acronyms that can be made with GAO.
+
+And idk but Gao-games? So the games I play automatically become galgames???
+
+Alright, that was not very funny.
+
 = Future Plans
 
 So here are my plans:
@@ -18,7 +33,7 @@ So here are my plans:
 
 When I get out of high school I would add more stuff to this site. My resume perhaps.
 
-= About me
+= About Me
 
 The person behind this site is still in high school, so don't expect him to be responsive
 nor to be professional. He's also terrible at math.
