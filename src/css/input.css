@@ -12,7 +12,7 @@
 
 /* Global link hover styles */
 a:hover {
-  @apply text-teal-500 transition-all no-underline shadow-[0_3px_0_0];
+  @apply text-teal-500 transition-all no-underline shadow-[0_4px_0_0];
 }
 
 .card {
