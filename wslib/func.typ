@@ -16,15 +16,21 @@
 /// - c (any): The content to display for the link.
 /// - ..args (dict): Additional attributes to add to the `<a>` element.
 /// -> any
-#let elink(url, c, show-icon: true, ..args) = context {
+#let elink(url, show-icon: true, ..args) = context {
   if target() == "html" {
     html.elem(
       "a",
       attrs: (href: url, target: "_blank", rel: "noopener noreferrer", title: url, ..args.named()),
-      [#c #if show-icon { fa("fa-arrow-up-right-from-square") }],
+      [#{
+          if args.pos().len() == 0 {
+            raw(url)
+          } else {
+            args.pos().join()
+          }
+        } #if show-icon { fa("fa-arrow-up-right-from-square") }],
     )
   } else {
-    link(url, c)
+    link(url, args.pos().join())
   }
 }
 
