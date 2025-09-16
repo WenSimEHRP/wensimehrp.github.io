@@ -14,6 +14,7 @@
   })
 }
 #let wstemplate(c) = context {
+  set heading(numbering: "1.")
   if target() == "html" {
     c
     html-display-footnote
@@ -37,7 +38,12 @@
   {
     show heading: set text(size: 1.5em)
     show heading: emph
-    heading(level: 1, frontmatter.at("title", default: "Untitled"), outlined: false)
+    heading(
+      level: 1,
+      frontmatter.at("title", default: "Untitled"),
+      outlined: false,
+      numbering: none,
+    )
   }
   show link: it => {
     set text(weight: "bold", font: "Merriweather Sans")
