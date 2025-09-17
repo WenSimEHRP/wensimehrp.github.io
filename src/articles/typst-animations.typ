@@ -365,7 +365,7 @@ by the engine.
 = Not Really a Conclusion
 
 Here's
-#elink("https://www.bilibili.com/video/BV1Z3HozoEPi")[
+#elink("https://www.bilibili.com/video/BV1HVpWz3Epi")[
   unicode character display video
 ] #footnote[
   I know that some people might have problems playing Bilibili videos, but let's
@@ -379,7 +379,7 @@ Enjoy!
 
 #context if target() == "html" {
   html.elem("iframe", attrs: (
-    src: "//player.bilibili.com/player.html?isOutside=true&bvid=BV1Z3HozoEPi",
+    src: "//player.bilibili.com/player.html?isOutside=true&bvid=BV1HVpWz3Epi",
     scrolling: "no",
     border: "0",
     frameborder: "no",
