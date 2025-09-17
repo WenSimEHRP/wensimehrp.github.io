@@ -18,9 +18,15 @@ as well as complex mathematical graphs. Despite all these, one thing nobody has 
 (or at least I haven't seen anyone doing) is using Typst to create animations.
 
 An animation is a sequence of images. Typst can generate images from Typst code,
-so in theory, it is possible to generate an animation using Typst. A simple way to
-do this is to first generate all frames as images using a loop or something else
-that serves the same purpose
+so in theory, it is possible to generate an animation using Typst. One of the easiest
+animations that involve procedural frame generation is a
+#elink("https://decodeunicode.org/")[Unicode character flash animation], which involves
+displaying each Unicode character one by one -- something in which its creation process
+could be simplified to a minimum with the help of a computer. I would be aiming to
+recreate this animation in the following sections.
+
+A simple way to create an animation is to first generate all frames as images using
+a loop or something else that serves the same purpose
 #footnote[
   Like a Makefile. Friendship ended with `do while` and `for`, now `make -j` is
   my best friend.
@@ -50,7 +56,22 @@ $> typst c frame.typ --input t=42
 ```
 
 Typst offers `sys.inputs` for accessing input values inside the document. All inputs
-are of string type, so it's necessary to convert them to numbers first.
+are of string type, so it's necessary to convert them to numbers first. The following
+code would render a piece of text that is given by the system input `i`:
+
+#let a = ```typst
+// In case there is no input, `our-text` would be "No input!"
+#let our-text = sys.inputs.at("i", default: "No input!")
+#our-text
+```
+
+#figure(
+  caption: [Evaluation result with `--input i="Hello, world!"`],
+  a + box(inset: 1em, [Hello, world!]),
+)
+
+With this, we can now pass the current frame index into Typst, and use that index
+as a unique codepoint for rendering each frame.
 
 = Speeding Up the Process
 
@@ -62,7 +83,7 @@ frames per second on my i9-13900HX machine. Can we do better? Of course we can.
 By default, before rendering the document, Typst would check system fonts and check
 what glyphs/codepoints are available. This process takes a significant amount of time
 to run on my i9-13900HX machine, and it is unreasonable to let Typst do this for
-a 65536-frame animation. Luckily, there are two flags that can help:
+an animation with 60k frames. Luckily, there are two flags that can help:
 
 - `--ignore-system-fonts`: Don't perform the system font check
 - `--font-path`: Specify a font path to load fonts from
@@ -117,6 +138,9 @@ spawn a lot of processes and organize them.
 seq 0 100 | parallel typst c flash.typ --input t={} -f png {}.png
 ```
 
+Yet, this still has a problem: images are huge to store on the disk, not to mention
+that we are generating 60k images. We could definitely do better.
+
 == The POSIX Pipe
 
 The naive approach involves writing to the disk, for FFmpeg would later read from
@@ -129,6 +153,7 @@ take place in memory, and memory I/O is magnitudes faster than disk I/O.
 #footnote[
   It's also possible to create a ramdisk or a tmpfs for this purpose, but for our
   scenario the pipe is sufficient. A tmpfs in this case is just an overkill.
+  But don't worry, we'll talk about tmpfs later.
 ]
 Take `ls -l | grep foo` as an example:
 
@@ -177,6 +202,46 @@ seq 0 100 | \
   ffmpeg -f image2pipe -vcodec png -i - output.mp4
 ```
 
+== Storing Assets in Memory
+
+During compilation, Typst would read assets (fonts, images, code, etc.) from the disk.
+As discussed above, disk I/O is slow, yet memory I/O is fast. To speed up the process
+furthermore, we can first store all assets in memory, then invoke Typst and let it
+read assets from memory instead of the disk.
+
+A `tmpfs` is a filesystem that is located inside the memory -- exactly what we need.
+Because it is located inside the memory, I/O operations on a `tmpfs` are way faster
+than on a regular disk. The following commands create a `tmpfs` that is 256MB in
+size:
+
+```bash
+sudo mkdir /mnt/mytmpfs
+sudo mount -t tmpfs -o size=256M tmpfs /mnt/mytmpfs
+```
+
+Ok, so are we copying all assets to that `/mnt/mytmpfs` directory? No, we are not.
+
+Major Linux distributions such as Fedora and Ubuntu usually provide a space called
+the Shared Memory, mounted at `/dev/shm`#footnote[
+  Some distributions might have `/tmp` mounted as a tmpfs. Nontheless, it's not always
+  guaranteed that `/tmp` is a tmpfs. To illustrate, my NixOS laptop has `/tmp` as
+  a regular disk, so it's better to use `/dev/shm`.
+
+  Also, sorry, Mac, BSD, and Windows users! This part doesn't apply to all of you.
+
+  Well, OpenBSD is an exception here, traitor... ;P
+
+  Disclaimer: I don't have a Mac, BSD, or Windows machine, so I cannot test.
+]. This space is a `tmpfs` that is shared
+among all users and processes. In this case, there's no need to create a new `tmpfs`,
+all we have to do is to just copy the assets to `/dev/shm` and let Typst read from
+there.
+
+```bash
+cp -r ./assets /dev/shm/animation
+# and from this step on, let Typst read assets from /dev/shm/animation
+```
+
 == The Final Script
 
 With all those modifications, here is our final script with some additional FFmpeg
@@ -188,28 +253,43 @@ set -euo pipefail
 
 FPS=24
 END=0xFFFF
-OUTPUT="output3.mkv"
+OUTPUT="tanim.mkv"
+INPUT="flash.typ"
 
+# preload all assets from `assets` into RAM
+mkdir -p /dev/shm/tanim
+cp -r assets/* /dev/shm/tanim/
+
+# Here I've instructed FFmpeg to use the NVENC hardware encoder. It's only available
+# on NVIDIA GPUs. If you don't have an NVIDIA GPU, just replace `h264_nvenc` with `libx264`.
 seq 0 $((END)) | parallel -k \
-  typst c flash.typ \
-    --input a={} \
+  typst c "/dev/shm/tanim/$INPUT" \
+    --input t={} \
     --ignore-system-fonts \
     --ppi 120 \
-    --font-path ./ \
+    --font-path /dev/shm/tanim/ \
     -f png \
     - | \
   ffmpeg -y -f image2pipe \
     -vcodec png \
     -framerate "$FPS" \
     -i - \
-    -i music.mp3 \
+    -i /dev/shm/tanim/music.mp3 \
     -map 0:v:0 -map 1:a:0 \
     -vf "scale=1920:1080:force_original_aspect_ratio=decrease,pad=1920:1080:(ow-iw)/2:(oh-ih)/2,format=yuv420p" \
     -af "loudnorm=I=-16:LRA=7:TP=-1.5" \
-    -c:v libx265 -preset medium -crf 23 -threads 0 \
+    -c:v h264_nvenc -preset medium -crf 23 -threads 0 \
     -c:a aac -b:a 192k \
     -shortest \
-    "$OUTPUT"
+    "/dev/shm/$OUTPUT"
+
+# copy final output to current directory
+cp "/dev/shm/$OUTPUT" ./
+
+# clean up
+rm -rf /dev/shm/tanim
+rm -f "/dev/shm/$OUTPUT"
+
 ```
 
 = Potential Speedups
@@ -251,7 +331,7 @@ I am talking about the `par-each` command in Nushell, that takes a list of items
 passes them into a closure, and runs the closures in parallel. The problem is not
 parallelism, neither the closure itself, but the fact that Nushell would collect
 the output of all closures first, then pipe them into the next command. In our case
-there are 65536 frames, and collecting all of them would take a lot of memory
+there are 60k frames, and collecting all of them would take a lot of memory
 and time.
 
 Compared to GNU Parallel, `parallel` would start piping the output of each command
@@ -280,13 +360,13 @@ by the engine.
 
 = Not Really a Conclusion
 
-Here's a #elink("https://decodeunicode.org/")[Decode-Unicode] style
+Here's
 #elink("https://www.bilibili.com/video/BV1Z3HozoEPi")[
   unicode character display video
 ] #footnote[
   I know that some people might have problems playing Bilibili videos, but let's
   just keep that for now. I don't want to post it on YouTube yet.
-]I made using the command given above. It has a bit less than 65536 frames -- not exactly 65536,
+]I made using the command given above. It has a bit less than 65536 frames -- 63488 to be exact,
 due to the fact that some Unicode codepoints in this range are invalid. Some codepoints
 are not defined, some are not displayable, some are just in the private use area,
 so the video doesn't reflect the actual Unicode standard. Nevertheless, I think this
@@ -305,6 +385,6 @@ Enjoy!
     loading: "lazy",
   ))
 } else [
-  Unfortunately the video embedding only works on the web version of this article.
+  Unfortunately video embedding only works on the web version of this article.
   But you can visit the link above to watch the video.
 ]
