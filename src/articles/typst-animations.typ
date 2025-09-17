@@ -322,6 +322,10 @@ of cold-booting Typst 60k times.#footnote[
   frame. This means that if any of those `foo-state.final()` code is involved, Typst
   would have to first store all 65k frames in memory, then resolve all queries, then
   pipe all frames out. The extra memory burden is definitely not what we want.
+]#footnote[
+  I know that someone is working on a Rust implementation of this animation thingy
+  using Typst as a crate and rayon for parallelism. I haven't tried it yet (I am
+  not that good at rust, and it is really a cult), but it seems promising.
 ]
 
 = This Does Not Work in Nushell!
