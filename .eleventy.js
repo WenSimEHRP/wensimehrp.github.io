@@ -187,7 +187,8 @@ export default function (eleventyConfig) {
 
   // Copy Merriweather Sans font files from node_modules to output
   eleventyConfig.addPassthroughCopy({
-    "node_modules/@fontsource-variable/merriweather-sans/files/*": "css/files"
+    "node_modules/@fontsource-variable/merriweather-sans/files/merriweather-sans-latin-wght-normal.woff2": "webfonts/merriweather-sans-latin-wght-normal.woff2",
+    "node_modules/@fontsource-variable/merriweather-sans/files/merriweather-sans-latin-wght-italic.woff2": "webfonts/merriweather-sans-latin-wght-italic.woff2"
   });
 
   // ========================================

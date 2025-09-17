@@ -57,7 +57,6 @@
     </div>
   </main>
 
-  <floating-footer :author="author" :created="created" :license="license" :metadata="metadata"></floating-footer>
   <stable-footer :author="author" :created="created" :license="license" :metadata="metadata"></stable-footer>
   <toc-script webc:if="toc ?? true"></toc-script>
   <!-- WebC JS Bundle -->
