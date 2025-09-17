@@ -60,7 +60,7 @@
 
       // 移除所有活动状态
       tocList.querySelectorAll('a').forEach(link => {
-        link.classList.remove('text-teal-600', 'dark:text-teal-400', 'shadow-[0_3px_0_0]');
+        link.classList.remove('text-teal-600', 'dark:text-teal-400', 'shadow-[0_2px_0_0]');
         link.classList.add('text-gray-600', 'dark:text-gray-400');
       });
 
@@ -69,7 +69,7 @@
         const activeLink = tocList.querySelector(`a[href="#${current}"]`);
         if (activeLink) {
           activeLink.classList.remove('text-gray-600', 'dark:text-gray-400');
-          activeLink.classList.add('text-teal-600', 'dark:text-teal-400', 'shadow-[0_3px_0_0]');
+          activeLink.classList.add('text-teal-600', 'dark:text-teal-400', 'shadow-[0_2px_0_0]');
         }
       }
     }
