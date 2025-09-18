@@ -59,6 +59,7 @@
 
   <stable-footer :author="author" :created="created" :license="license" :metadata="metadata"></stable-footer>
   <toc-script webc:if="toc ?? true"></toc-script>
+  <header-script></header-script>
   <!-- WebC JS Bundle -->
   <script @raw="getBundle('js')" webc:keep></script>
 </body>

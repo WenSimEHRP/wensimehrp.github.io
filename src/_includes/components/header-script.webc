@@ -1,5 +1,5 @@
 <script webc:keep>
-  document.addEventListeners('DOMContentLoaded', function () {
+  document.addEventListener('DOMContentLoaded', function () {
     const article = document.querySelector('article .prose');
     const header_title = document.getElementById('header-title');
 
@@ -10,8 +10,33 @@
     const h1 = article.querySelector('h1');
     if (!h1) return;
 
-    // TODO: Check the scrolling position
-    // If it exceeds the position of the h1 element, show the
-    // h1, otherwise restore to site title
+    // Store the original site title
+    const siteTitle = header_title.textContent;
+    const articleTitle = h1.textContent;
+
+    // Function to update header title based on scroll position
+    function updateHeaderTitle() {
+      const h1Rect = h1.getBoundingClientRect();
+      const headerHeight = document.querySelector('header').offsetHeight;
+      
+      // Check if the h1 element has been scrolled past (its bottom is above the header)
+      if (h1Rect.bottom < headerHeight) {
+        // Show article title when scrolled past h1
+        if (header_title.textContent !== articleTitle) {
+          header_title.textContent = articleTitle;
+        }
+      } else {
+        // Show site title when h1 is still visible or above scroll position
+        if (header_title.textContent !== siteTitle) {
+          header_title.textContent = siteTitle;
+        }
+      }
+    }
+
+    // Listen for scroll events
+    window.addEventListener('scroll', updateHeaderTitle);
+    
+    // Initial check in case page is already scrolled
+    updateHeaderTitle();
   })
 </script>

@@ -5,7 +5,7 @@
     <nav class="flex items-center justify-between">
 
       <!-- Site Title -->
-      <a href="/" class="text-xl font-bold" id="header-title @text="metadata.title"></a>
+      <a href="/" class="text-xl font-bold" id="header-title" @text="metadata.title"></a>
 
       <!-- Navigation Links -->
       <div class="flex items-center space-x-6 text-sm">
