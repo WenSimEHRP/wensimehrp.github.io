@@ -1,0 +1,17 @@
+<script webc:keep>
+  document.addEventListeners('DOMContentLoaded', function () {
+    const article = document.querySelector('article .prose');
+    const header_title = document.getElementById('header-title');
+
+    if (!article || !header_title) return;
+
+    // query for the h1 element
+    // there should be only one h1 element
+    const h1 = article.querySelector('h1');
+    if (!h1) return;
+
+    // TODO: Check the scrolling position
+    // If it exceeds the position of the h1 element, show the
+    // h1, otherwise restore to site title
+  })
+</script>
