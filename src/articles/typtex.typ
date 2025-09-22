@@ -1,13 +1,12 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   title: "Typtex!",
   description: "Messing typst with macros.",
   created: "2025-08-29",
   layout: "layout.webc",
   tags: ("articles", "typesetting", "tools", "Typst"),
   author: "Jeremy Gao",
-)) <frontmatter>
-#show: wstemplate
+)
 
 = Typst vs Latex
 

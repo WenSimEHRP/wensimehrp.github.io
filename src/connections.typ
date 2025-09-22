@@ -1,14 +1,17 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   layout: "layout.webc",
   title: "Friends",
   description: "My friends.",
   created: "2025-09-10",
   toc: false,
-)) <frontmatter>
+  author: "Jeremy Gao",
+)
 
 // connections are sorted alphabetically by title.
 #let connections-data = toml("_data/connections.toml").connections
+
+#set heading(numbering: none)
 
 #let to-card(data) = context {
   if target() != "html" {

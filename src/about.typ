@@ -1,11 +1,11 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   layout: "layout.webc",
   title: "Aboot!",
   created: "2025-08-29",
   description: "Almost everything about this site, where I share my thoughts.",
-)) <frontmatter>
-#show: wstemplate
+  author: "Jeremy Gao",
+)
 
 = About the Name
 

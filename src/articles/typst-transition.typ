@@ -1,13 +1,12 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   layout: "layout.webc",
   title: "Transitioning to Typst",
   description: "Hey, are you one of the Typst dudes?",
   created: "2025-09-09",
   tags: ("Typst", "tools", "typesetting"),
   author: "Jeremy Gao",
-)) <frontmatter>
-#show: wstemplate
+)
 
 I've been using typst for a while, even using it to generate my blog site (as you can see).
 It is a great tool, with a typesetting quality that rivals LaTeX -- I cannot say

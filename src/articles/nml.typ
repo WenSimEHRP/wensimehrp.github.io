@@ -1,5 +1,5 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   title: "NewGoofy Meta Language",
   description: "Why NML is bad, why NewGRF is bad.",
   created: "2025-09-03",
@@ -7,8 +7,7 @@
   tags: ("OpenTTD", "game", "tools"),
   author: "Jeremy Gao",
   wip: true,
-)) <frontmatter>
-#show: wstemplate
+)
 
 I've been writing NewGRFs for a while. My first GRF released on #elink("https://bananas.openttd.org")[BaNaNaS]
 was a China Set GRF -- despite the fact that I don't really like the project's artistic

@@ -16,7 +16,20 @@
   block(above: .2cm, dashy-line)
 }
 
-#let wstemplate(c) = context {
+#let default-config = (
+  layout: "layout.webc",
+  title: "Untitled",
+  description: "No description.",
+  created: "2025-01-01",
+  tags: (),
+  author: "Unknown",
+  toc: true,
+  comments: true,
+)
+
+#let wstemplate(c, ..matter) = context {
+  let frontmatter = default-config + matter.named()
+  [#metadata(frontmatter) <frontmatter>]
   set heading(numbering: "1.")
   if target() == "html" {
     c
@@ -31,11 +44,6 @@
     set text(font: "Merriweather Sans", fill: teal-800)
     set par(justify: false)
     smallcaps(it)
-  }
-  let frontmatter = {
-    let i = query(<frontmatter>)
-    if i.len() == 0 { return (:) }
-    i.at(0).value
   }
   {
     show heading: set text(size: 1.5em)

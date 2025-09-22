@@ -1,5 +1,5 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   title: "RingWorld",
   description: "Localization and internationalization madness.",
   created: "2025-09-03",
@@ -7,8 +7,7 @@
   tags: ("RimWorld", "game", "localization", "internationalization"),
   author: "Jeremy Gao",
   wip: true,
-)) <frontmatter>
-#show: wstemplate
+)
 
 = RingWorld?
 

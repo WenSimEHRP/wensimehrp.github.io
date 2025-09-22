@@ -1,5 +1,5 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   title: "Paiagram",
   description: "How to make timetables (for trains).",
   created: "2025-09-11",
@@ -7,8 +7,7 @@
   tags: ("timetable", "tools", "Typst"),
   author: "Jeremy Gao",
   wip: true,
-)) <frontmatter>
-#show: wstemplate
+)
 
 Years ago I watched a video about how Chinese railways are scheduled and organized.
 The video talked about a tool named "运行图". I don't have an official English translation

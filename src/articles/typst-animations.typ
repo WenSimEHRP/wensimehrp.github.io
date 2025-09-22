@@ -1,13 +1,12 @@
 #import "@local/wslib:0.1.0": *
-#metadata((
+#show: wstemplate.with(
   layout: "layout.webc",
   title: "Animations with Typst",
   description: "A.K.A. Typst with FFmpeg, or Tanim.",
   created: "2025-09-14",
   tags: ("Typst", "tools", "FFmpeg"),
   author: "Jeremy Gao",
-)) <frontmatter>
-#show: wstemplate
+)
 
 Typst is a great typesetting tool. It's also great as a drawing tool. Reviewing its
 history of #{ datetime.today() - datetime(year: 2019, month: 12, day: 1) }.days() days,
