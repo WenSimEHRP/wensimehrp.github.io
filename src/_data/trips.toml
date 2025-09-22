@@ -379,3 +379,21 @@ type = "RapidBus"
 route = "R4 UBC"
 departure = "Joyce Station"
 arrival = "W 41 Ave @ Granville St"
+
+[[trip]]
+date = 2025-09-20T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Canada Line"
+departure = "King Edward Station"
+arrival = "Aberdeen Station"
+fare = "CA$2.25"
+
+[[trip]]
+date = 2025-09-20T00:00:00-07:00
+agency = "TransLink"
+type = "SkyTrain"
+route = "Canada Line"
+departure = "Aberdeen Station"
+arrival = "Oakridge–41st Ave Station"
+fare = "CA$2.25"
