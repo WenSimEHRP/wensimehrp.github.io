@@ -1,6 +1,6 @@
 #import "@preview/oxifmt:1.0.0": strfmt
-#import "@local/wslib:0.1.0"
 #import "@local/wslib:0.1.0": *
+#import "./_data/colours.typ"
 #metadata((
   layout: "layout.webc",
   toc: "false",
@@ -10,21 +10,21 @@
   license: "All rights reserved",
 )) <frontmatter>
 
-// we don't use elinks with icons here
-#let elink = elink.with(show-icon: false)
-
 #html.elem("div", attrs: (class: "text-sm text-gray-600 dark:text-gray-400 mb-4 leading-tight"))[
   - Click on station names to view them on Google Maps
   - Travel logs start from 2025. Some earlier trips are included, but may not be
     complete.
   - Click on the agency logo to visit their homepage.
   - Agency logos are fetched from various sources (mainly from
-    #wslib.elink("https://commons.wikimedia.org/wiki/Main_Page")[Wikimedia Commons]).
+    #elink("https://commons.wikimedia.org/wiki/Main_Page")[Wikimedia Commons]).
     They may not always be accurate or up-to-date.
   - Through services are counted as separate companies.
   - Different directions of the same nominal bus route are counted as separate routes.
     E.g. "R4 UBC" is different from "R4 Joyce". This only apply to buses.
 ]
+
+// we don't use elinks with icons here
+#let elink = elink.with(show-icon: false)
 
 #let td = "px-3 py-1 text-sm text-gray-900 dark:text-gray-100 align-middle whitespace-nowrap h-9 max-h-9"
 
@@ -41,12 +41,19 @@
       (..it, date: parsed)
     })
 )
-#let trips-additional = toml("_data/tripAdditional.toml")
 
 #let diagnostics = (
   "Total trips": trips.len(),
-  "Unique routes": trips.map(it => it.at("agency", default: none) + it.at("route", default: none)).dedup().len(),
-  "Unique vehicles": trips.map(it => it.at("agency", default: none) + it.at("vehicle", default: none)).dedup().len(),
+  "Unique routes": trips
+    .map(it => (it.at("agency", default: none), it.at("route", default: none)))
+    .dedup()
+    .filter(it => none not in it)
+    .len(),
+  "Unique vehicles": trips
+    .map(it => (it.at("agency", default: none), it.at("vehicle", default: none)))
+    .dedup()
+    .filter(it => none not in it)
+    .len(),
   "Transit agencies": trips.map(it => it.at("agency", default: none)).dedup().len(),
   "Stations visited": trips
     .map(it => (
@@ -78,6 +85,8 @@
 ]
 
 #let make-trip-row(trip) = html.elem("tr")[
+  #let trip-info = colours.get(trip)
+  // date
   #html.elem("td", attrs: (
     class: td,
   ))[
@@ -87,51 +96,31 @@
       trip.date.display("[month repr:short] [day], [year]")
     }
   ]
+  // agency
   #html.elem("td", attrs: (
     class: td + " bg-gray-50 dark:bg-gray-700 text-center",
   ))[
-    #let agency-info = {
-      if "agency" in trip and trip.agency in trips-additional.agency {
-        trips-additional.agency.at(trip.agency)
-      } else {
-        none
-      }
-    }
-    #if agency-info != none {
-      elink(agency-info.site, title: trip.agency)[
+    #if trip-info.agency-icon != none {
+      elink(trip-info.agency-site, title: trip.agency)[
         #html.elem("img", attrs: (
-          src: agency-info.image,
+          src: trip-info.agency-icon,
           alt: trip.agency,
           class: "inline-block h-full w-auto max-w-20 m-0 p-0 align-middle border-0 object-contain",
           style: "vertical-align: middle; margin: 0; padding: 0;",
         ))
       ]
-    } else {
-      html.elem("div", attrs: (
-        class: "inline-flex items-center",
-      ))[
-        #html.elem("span", attrs: (class: "text-gray-500 text-xs font-mono"))[
-          #trip.at("agency", default: "---")
-        ]
-      ]
     }
   ]
+  // route
   #html.elem("td", attrs: (
     class: td,
   ))[
-    #let type-info = {
-      if "type" in trip and trip.type in trips-additional.type {
-        trips-additional.type.at(trip.type)
-      } else {
-        (colorClasses: "bg-gray-100 text-gray-800 dark:bg-gray-600 dark:text-gray-200", icon: "")
-      }
-    }
     #html.elem("span", attrs: (
       class: "inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium min-w-30 max-w-30 overflow-hidden "
-        + type-info.colorClasses,
+        + trip-info.route-colours,
       title: trip.at("route", default: "---"),
     ))[
-      #html.elem("i", attrs: (class: type-info.icon))
+      #html.elem("i", attrs: (class: trip-info.route-icon))
       #sym.space.nobreak
       #html.elem("span", attrs: (class: "truncate"))[#trip.at(
         "route",
@@ -139,6 +128,7 @@
       )]
     ]
   ]
+  // arrival and departure
   #(
     (trip.departure, trip.arrival)
       .map(it => html.elem("td", attrs: (
@@ -148,6 +138,7 @@
       ])
       .join()
   )
+  // fare
   #html.elem("td", attrs: (
     class: td,
   ))[
@@ -157,6 +148,7 @@
       html.elem("span", attrs: (class: "text-gray-400"))[\-\-\-]
     }
   ]
+  // vehicle
   #html.elem("td", attrs: (
     class: td,
   ))[
@@ -168,6 +160,7 @@
       #html.elem("span", attrs: (class: "truncate"), trip.at("vehicle", default: "---"))
     ]
   ]
+  // notes
   #html.elem("td", attrs: (
     class: td,
   ))[
