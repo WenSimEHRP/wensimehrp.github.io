@@ -1,14 +1,16 @@
 #import "@preview/oxifmt:1.0.0": strfmt
 #import "@local/wslib:0.1.0": *
 #import "./_data/colours.typ"
-#metadata((
+#import "_data/trips.typ": trips
+
+#show: wstemplate.with(
   layout: "layout.webc",
   toc: "false",
   title: "Transit Log",
   description: "A record of my transportation and travel history.",
   created: "2025-08-31",
   license: "All rights reserved",
-)) <frontmatter>
+)
 
 #html.elem("div", attrs: (class: "text-sm text-gray-600 dark:text-gray-400 mb-4 leading-tight"))[
   - Click on station names to view them on Google Maps
@@ -25,44 +27,27 @@
 
 // we don't use elinks with icons here
 #let elink = elink.with(show-icon: false)
-
 #let td = "px-3 py-1 text-sm text-gray-900 dark:text-gray-100 align-middle whitespace-nowrap h-9 max-h-9"
 
-#let trips = (
-  toml("_data/trips.toml")
-    .trip
-    .map(it => {
-      let raw = it.at("date", default: (:)).values().at(0, default: none)
-      let parsed = none
-      if raw != none {
-        let parts = raw.split("T").at(0).split("-").map(int)
-        parsed = datetime(year: parts.at(0), month: parts.at(1), day: parts.at(2))
-      }
-      (..it, date: parsed)
-    })
-)
-
 #let diagnostics = (
-  "Total trips": trips.len(),
+  "Total trips": trips,
   "Unique routes": trips
     .map(it => (it.at("agency", default: none), it.at("route", default: none)))
     .dedup()
-    .filter(it => none not in it)
-    .len(),
+    .filter(it => it not in (none, ""))
+    .sorted(),
   "Unique vehicles": trips
     .map(it => (it.at("agency", default: none), it.at("vehicle", default: none)))
     .dedup()
-    .filter(it => none not in it)
-    .len(),
-  "Transit agencies": trips.map(it => it.at("agency", default: none)).dedup().len(),
+    .filter(it => it not in (none, ""))
+    .sorted(),
+  "Transit agencies": trips.map(it => it.at("agency", default: none)).dedup().sorted(),
   "Stations visited": trips
-    .map(it => (
-      it.at("agency", default: none) + it.at("departure", default: none),
-      it.at("agency", default: none) + it.at("arrival", default: none),
-    ))
+    .map(it => (it.at("departure", default: none), it.at("arrival", default: none)))
     .flatten()
     .dedup()
-    .len(),
+    .filter(it => it not in (none, ""))
+    .sorted(),
   "Money Spent": strfmt(
     "CA${:.2}",
     trips
@@ -78,7 +63,12 @@
 #html.elem("div", attrs: (class: "grid grid-cols-2 md:grid-cols-4 gap-4 mb-8 mt-6"))[
   #for (k, v) in diagnostics {
     html.elem("div", attrs: (class: "card"))[
-      #html.elem("div", attrs: (class: "text-2xl font-bold text-teal-600 dark:text-teal-400"))[#v]
+      #html.elem("div", attrs: (class: "text-2xl font-bold text-teal-600 dark:text-teal-400"), if type(v)
+        in (array, dictionary) {
+        [#v.len()]
+      } else {
+        [#v]
+      })
       #html.elem("div", attrs: (class: "text-sm text-gray-600 dark:text-gray-400"))[#k]
     ]
   }
@@ -178,6 +168,7 @@
     }
   ]
 ]
+
 
 #html.elem("div", attrs: (
   class: "bg-gray-50 dark:bg-gray-700 outline rounded-lg outline-gray-200 dark:outline-gray-700 overflow-x-auto",
