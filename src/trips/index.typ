@@ -30,16 +30,16 @@
 #let td = "px-3 py-1 text-sm text-gray-900 dark:text-gray-100 align-middle whitespace-nowrap h-9 max-h-9"
 
 #let diagnostics = (
-  "Total trips": trips,
+  "Total trips": trips.len(),
   "Unique routes": trips
     .map(it => (it.at("agency", default: none), it.at("route", default: none)))
     .dedup()
-    .filter(it => it not in (none, ""))
+    .filter(it => none not in it)
     .sorted(),
   "Unique vehicles": trips
     .map(it => (it.at("agency", default: none), it.at("vehicle", default: none)))
     .dedup()
-    .filter(it => it not in (none, ""))
+    .filter(it => none not in it)
     .sorted(),
   "Transit agencies": trips.map(it => it.at("agency", default: none)).dedup().sorted(),
   "Stations visited": trips
