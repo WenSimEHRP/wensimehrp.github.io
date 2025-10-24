@@ -447,4 +447,52 @@
     departure: "Oak St @ W 41 Ave",
     arrival: "Oak St @ W 33 Ave",
   ),
+  (
+    date: datetime(year: 2025, month: 10, day: 21),
+    agency: "TransLink",
+    route: "15 Olympic Village",
+    departure: "Cambie St @ W 33 Ave",
+    arrival: "Olympic Village Station",
+    fare: "CA$2.25",
+  ),
+  (
+    date: datetime(year: 2025, month: 10, day: 21),
+    agency: "TransLink",
+    route: "50 Waterfront",
+    departure: "Olympic Village Station",
+    arrival: "W 2nd Ave @ Anderson St",
+    notes: "Cont'd from previous trip",
+  ),
+  (
+    date: datetime(year: 2025, month: 10, day: 21),
+    agency: "TransLink",
+    route: "50 False Creek / Granville Island",
+    departure: "W 2nd Ave @ Anderson St",
+    arrival: "Olympic Village Station",
+    fare: "CA$2.25",
+  ),
+  (
+    date: datetime(year: 2025, month: 10, day: 21),
+    agency: "TransLink",
+    route: "15 Cambie",
+    departure: "Olympic Village Station",
+    arrival: "Cambie St @ W 33 Ave",
+    notes: "Cont'd from previous trip"
+  ),
+  (
+    date: datetime(year: 2025, month: 10, day: 23),
+    agency: "TransLink",
+    route: "Canada Line",
+    departure: "King Edward Station",
+    arrival: "Waterfront Station",
+    fare: "CA$2.25",
+  ),
+  (
+    date: datetime(year: 2025, month: 10, day: 23),
+    agency: "TransLink",
+    route: "17 Oak",
+    departure: "Robson & Hamilton",
+    arrival: "Oak St @ Nanton Ave",
+    fare: "CA$2.25",
+  )
 )
