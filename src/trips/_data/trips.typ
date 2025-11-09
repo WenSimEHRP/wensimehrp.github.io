@@ -494,5 +494,37 @@
     departure: "Robson & Hamilton",
     arrival: "Oak St @ Nanton Ave",
     fare: "CA$2.25",
-  )
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 08),
+    agency: "TransLink",
+    route: "17 Downtown",
+    departure: "Oak St @ Devonshire Cres",
+    arrival: "Robson & Hamilton",
+    fare: "CA$2.25",
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 08),
+    agency: "TransLink",
+    route: "17 Oak",
+    departure: "Robson & Hamilton",
+    arrival: "Granville St @ W Pender St",
+    notes: "Cont'd from previous trip"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 08),
+    agency: "TransLink",
+    route: "SeaBus",
+    departure: "Waterfront Station",
+    arrival: "Lonsdale Quay Terminal",
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 08),
+    agency: "TransLink",
+    route: "229 Lynn Valley",
+    departure: "Lonsdale Quay Terminal",
+    arrival: "Lonsdale Ave @ E 13 St",
+    vehicle: "9767",
+    notes: "Original plan was 230; bus did not come"
+  ),
 )
