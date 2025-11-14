@@ -527,4 +527,42 @@
     vehicle: "9767",
     notes: "Original plan was 230; bus did not come"
   ),
+  (
+    date: datetime(year: 2025, month: 11, day: 12),
+    agency: "TransLink",
+    route: "17 Oak",
+    departure: "Oak St @ Devonshire Cres",
+    arrival: "Oak St @ W 41st Ave",
+    fare: "CA$2.25"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 12),
+    agency: "TransLink",
+    route: "R4 Joyce",
+    departure: "W 41 Ave @ Oak St",
+    arrival: "Oakridge-41st Ave Station",
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 12),
+    agency: "TransLink",
+    route: "Canada Line",
+    departure: "Oakridge-41st Avenue",
+    arrival: "Richmond–Brighouse",
+    fare: "CA$1.05"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 12),
+    agency: "TransLink",
+    route: "Canada Line",
+    departure: "Richmond–Brighouse",
+    arrival: "Marine Drive Station",
+    fare: "CA$2.25"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 12),
+    agency: "TransLink",
+    route: "17 Downtown",
+    departure: "Marine Drive Station",
+    arrival: "Oak St @ W 33 Ave",
+  ),
 )
