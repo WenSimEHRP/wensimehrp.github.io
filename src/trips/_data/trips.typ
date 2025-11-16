@@ -593,6 +593,6 @@
     agency: "TransLink",
     route: "229 Lynn Valley",
     departure: "Lonsdale Quay Terminal",
-    arrival: "Lonsdale Ave @ E 13 St",
+    arrival: "Lonsdale Ave @ E Keith Rd",
   ),
 )
