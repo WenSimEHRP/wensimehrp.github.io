@@ -595,4 +595,46 @@
     departure: "Lonsdale Quay Terminal",
     arrival: "Lonsdale Ave @ E Keith Rd",
   ),
+  (
+    date: datetime(year: 2025, month: 11, day: 21),
+    agency: "TransLink",
+    route: "Canada Line",
+    departure: "King Edward Station",
+    arrival: "Bridgeport Station",
+    fare: "CA$3.30"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 21),
+    agency: "TransLink",
+    route: "412 Sea Island South",
+    departure: "Bridgeport Station",
+    arrival: "Cowley Cres @ Inglis Dr",
+    vehicle: "25501"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 21),
+    agency: "TransLink",
+    route: "412 Bridgeport",
+    departure: "Inglis Dr @ Bell Lrving St",
+    arrival: "Bridgeport Station",
+    fare: "CA$2.25",
+    vehicle: "25501"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 21),
+    agency: "TransLink",
+    route: "Canada Line",
+    departure: "Bridgeport Station",
+    arrival: "King Edward Station",
+    fare: "CA$1.05",
+    vehicle: "220"
+  ),
+  (
+    date: datetime(year: 2025, month: 11, day: 21),
+    agency: "TransLink",
+    route: "33 29th Avenue",
+    departure: "King Edward Station",
+    arrival: "Midlothian Ave @ Clancy Loranger Way",
+    vehicle: "8345"
+  )
 )
