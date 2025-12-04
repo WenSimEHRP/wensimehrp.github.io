@@ -7,10 +7,7 @@
   author: "Jeremy Gao",
 )
 
-I don't have time right now so this might be a short one.
-
-So bascially the thing is at #elink("https://github.com/WenSimEHRP/bad-typple").
-The rest I don't have time to tell you I have calculus to do right now bye bye.
+#elink("https://github.com/WenSimEHRP/bad-typple").
 
 #context if target() == "html" {
   html.elem("iframe", attrs: (
