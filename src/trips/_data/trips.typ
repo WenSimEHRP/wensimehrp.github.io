@@ -636,5 +636,5 @@
     departure: "King Edward Station",
     arrival: "Midlothian Ave @ Clancy Loranger Way",
     vehicle: "8345"
-  )
+  ),
 )
