@@ -15,7 +15,7 @@
     "@tailwindcss/typography": "^0.5.16",
     "@fontsource-variable/merriweather-sans": "^5.2.6",
     "@fortawesome/fontawesome-free": "^7.0.0",
-    "@myriaddreamin/typst-ts-node-compiler": "^0.6.1-rc3",
+    "@myriaddreamin/typst-ts-node-compiler": "^0.7.0-rc1",
     "html-minifier-terser": "^7.2.0",
     "pagefind": "^1.4.0",
     "tailwindcss": "^4.1.12"
