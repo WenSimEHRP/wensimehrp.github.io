@@ -42,7 +42,7 @@ where to go at the right time, while being easy to use. The only tools I could u
 )[pyETRC], and a bit later, #elink("https://github.com/CDK6182CHR/qETRC")[qETRC].#footnote[Both qETRC and pyETRC are
   developed by #elink(
     "https://github.com/cdk6182chr",
-  )[x.e.p.]. They are not official predecessors of ETRC.]. I was too dumb to install a JDK for ETRC, and I couldn't read
+  )[x.e.p.]. They are not official successors of ETRC.]. I was too dumb to install a JDK for ETRC, and I couldn't read
 OuDia's Japanese interface, so I tried py and qETRC and -- I didn't know if it is because I was too stupid or both apps
 were poorly designed -- I just couldn't get the hang of them.
 
