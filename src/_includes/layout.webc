@@ -10,7 +10,8 @@
   <meta webc:if="license" name="license" :content="license">
   <link rel="canonical" :href="metadata.url">
   <link href="/css/output.css" rel="stylesheet" webc:keep>
-
+  <script webc:keep defer src="https://cloud.umami.is/script.js"
+    data-website-id="1e645081-beea-4836-bd66-ead28c2c1976"></script>
   <!-- WebC CSS Bundle -->
   <style @raw="getBundle('css')" webc:keep></style>
 </head>
