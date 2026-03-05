@@ -12,7 +12,7 @@ I think you would find interesting stuff here.
     class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4 [&_a]:text-sm [&_a]:font-semibold [&_a]:no-underline [&_a]:min-w-full [&_a]:text-center">
     <a href="/trips" class="card"><i class="fa-solid fa-route mr-1"></i>Transit Log</a>
     <a href="/connections" class="card"><i class="fa-solid fa-user-group mr-1"></i>Friends</a>
-    <a href="/Paiagram" class="card"><i class="fa-solid fa-map mr-1"></i>Paiagram</a>
+    <a href="https://paiagram.com" class="card"><i class="fa-solid fa-map mr-1"></i>Paiagram</a>
     <a href="/oudia-to-kdl" class="card"><i class="fa-solid fa-repeat mr-1"></i>Oud to KDL</a>
     <a href="/storage" class="card"><i class="fa-solid fa-warehouse mr-1"></i>Storage</a>
 </div>

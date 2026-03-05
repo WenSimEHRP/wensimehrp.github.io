@@ -637,4 +637,46 @@
     arrival: "Midlothian Ave @ Clancy Loranger Way",
     vehicle: "8345"
   ),
+  (
+    date: datetime(year: 2025, month: 12, day: 14),
+    agency: "Sichuan Airlines",
+    route: "3U3860",
+    departure: "YVR",
+    arrival: "TFU"
+  ),
+  (
+    date: datetime(year: 2025, month: 12, day: 15),
+    agency: "Sichuan Airlines",
+    route: "3U6901",
+    departure: "TFU",
+    arrival: "WNZ"
+  ),
+  (
+    date: datetime(year: 2025, month: 12, day: 24),
+    agency: "9 Air",
+    route: "AQ1364",
+    departure: "WNZ",
+    arrival: "KWE"
+  ),
+  (
+    date: datetime(year: 2025, month: 12, day: 26),
+    agency: "Capital Airlines",
+    route: "JD5093",
+    departure: "KWE",
+    arrival: "WNZ"
+  ),
+  (
+    date: datetime(year: 2026, month: 1, day: 8),
+    agency: "Sichuan Airlines",
+    route: "3U6902",
+    departure: "WNZ",
+    arrival: "TFU"
+  ),
+  (
+    date: datetime(year: 2026, month: 1, day: 8),
+    agency: "Sichuan Airlines",
+    route: "3U3859",
+    departure: "TFU",
+    arrival: "YVR"
+  ),
 )

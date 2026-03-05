@@ -26,6 +26,24 @@
       route-icon: "fa-solid fa-plane",
       route-colours: "bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200",
     ),
+    "9 Air": p => (
+      agency-icon: "https://upload.wikimedia.org/wikipedia/commons/2/2d/9air_logo_2023.png",
+      agency-site: "https://www.9air.com/",
+      route-icon: "fa-solid fa-plane",
+      route-colours: "bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200",
+    ),
+    "Capital Airlines": p => (
+      agency-icon: "https://upload.wikimedia.org/wikipedia/zh/f/f3/HNA_logo.jpg",
+      agency-site: "https://www.jdair.net/",
+      route-icon: "fa-solid fa-plane",
+      route-colours: "bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200",
+    ),
+    "Sichuan Airlines": p => (
+      agency-icon: "https://upload.wikimedia.org/wikipedia/zh/0/0d/Sichuan_Airlines_logo.svg",
+      agency-site: "https://www.sichuanair.com/",
+      route-icon: "fa-solid fa-plane",
+      route-colours: "bg-sky-100 dark:bg-sky-900 text-sky-800 dark:text-sky-200",
+    ),
     "_default": p => (:),
   )
   let result = if agency not in agencies-dict {
